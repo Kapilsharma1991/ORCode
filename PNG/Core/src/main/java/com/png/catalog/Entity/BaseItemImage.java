@@ -2,6 +2,10 @@ package com.png.catalog.Entity;
 
 import org.springframework.data.annotation.Id;
 
+/**
+ * @author Manish Arora
+ *
+ */
 public class BaseItemImage {
 	
 	@Id

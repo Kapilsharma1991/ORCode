@@ -8,7 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.png.sample.CatalogTools;
+import com.png.sample.SampleTools;
 import com.png.sample.Product;
 
 
@@ -25,7 +25,7 @@ public class HelloController {
 
 		try {
 
-			CatalogTools tools = (CatalogTools) context.getBean("catalogTools");
+			SampleTools tools = (SampleTools) context.getBean("catalogTools");
 			tools.createProduct("Iphone", "RED", 800);
 
 			Product prd = tools.getProduct(1);

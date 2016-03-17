@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import com.png.sample.CatalogTools;
+import com.png.sample.SampleTools;
 import com.png.sample.Product;
 
 
@@ -34,7 +34,7 @@ public class RestController {
 
 		try {
 
-			CatalogTools tools = (CatalogTools) context.getBean("catalogTools");
+			SampleTools tools = (SampleTools) context.getBean("catalogTools");
 			//tools.createProduct("Iphone", "RED", 800);
 
 			prd = tools.getProduct(1);

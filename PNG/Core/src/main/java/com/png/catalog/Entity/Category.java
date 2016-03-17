@@ -5,6 +5,10 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 
+/**
+ * @author Manish Arora
+ *
+ */
 public class Category {
 
 	@Id

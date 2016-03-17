@@ -4,6 +4,10 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 
+/**
+ * @author Manish Arora
+ *
+ */
 public class Catalog {
 	
 	@Id

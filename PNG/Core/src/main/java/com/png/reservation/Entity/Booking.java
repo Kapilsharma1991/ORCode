@@ -4,6 +4,10 @@ import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 
+/**
+ * @author Manish Arora
+ *
+ */
 public class Booking {
 	
 	@Id

@@ -1,5 +1,9 @@
 package com.png.catalog.Entity;
 
+/**
+ * @author Manish Arora
+ *
+ */
 import org.springframework.data.annotation.Id;
 
 public class Ratings {

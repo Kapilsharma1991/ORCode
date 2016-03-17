@@ -2,7 +2,7 @@ package com.png.sample;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class CatalogTools {
+public class SampleTools {
 	
 	private CoreDataSource coreDs;
 	private JdbcTemplate jdbcTemplate;

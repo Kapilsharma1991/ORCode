@@ -13,7 +13,7 @@ public class ProductMains {
 
 		try {
 
-			CatalogTools tools = (CatalogTools) context.getBean("catalogTools");
+			SampleTools tools = (SampleTools) context.getBean("catalogTools");
 			tools.createProduct("Iphone", "White", 800);
 
 			Product prd = tools.getProduct(1);

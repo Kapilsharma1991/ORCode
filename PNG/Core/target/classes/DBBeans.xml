@@ -22,7 +22,7 @@
    <property name="dataSource" ref="dataSource"/>       
    </bean>
    
-   <bean id="catalogTools" class="com.png.sample.CatalogTools" >
+   <bean id="catalogTools" class="com.png.sample.SampleTools" >
    <property name="coreDs" ref="coreDataSource"> </property>
    </bean>
   
