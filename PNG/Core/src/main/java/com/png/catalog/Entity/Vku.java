@@ -18,6 +18,7 @@ public class Vku {
 	private Date permitStartDate;
 	private Date permitEndDate;
 	private List<String> bookings;
+	
 	public String getVendorId() {
 		return vendorId;
 	}
