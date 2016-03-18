@@ -17,35 +17,42 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<bean id="mongoRestController" class="com.png.catalog.ProductActorController">
-	<property name="coreTools" ref="coreMongoTools"></property>
+	<!-- *****************PDP Components start here***************** -->
+
+	<bean id="productActorController" class="com.png.catalog.ProductActorController">
+		<property name="pdpManager" ref="pdpManager"></property>
+		<property name="pdpTranslator" ref="pdpTranslator"></property>
+		<property name="pdpValidator" ref="pdpValidator"></property>
 	</bean>
 
-
-<!-- 	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/TEST" />
-		<property name="username" value="root" />
-		<property name="password" value="" />
-	</bean>
- -->
-	
-	<bean id="catalogTools" class="com.png.sample.CatalogTools">
-		<property name="coreDs" ref="coreDataSource">
+	<bean id="pdpManager" class="com.png.catalog.ProductDetailsManager">
+		<property name="catalogTools" ref="catalogTools">
 		</property>
 	</bean>
+
+	<bean id="pdpTranslator" class="com.png.catalog.ProductDetailsReqTranslator"></bean>
+
+	<bean id="pdpValidator" class="com.png.catalog.ProductDetailsValidator"></bean>
+
+	<bean id="catalogTools" class="com.png.catalog.CatalogTools">
+		<property name="catMongoTemplate" ref="catMongoTemplate">
+		</property>
+	</bean>
+
+	<!-- *****************PDP Components ends here***************** -->
+	
+	
+	
+
+	<!-- *****************Mongo Components Starts here***************** -->
 
 	<mongo:mongo host="localhost" port="27017" />
 
-	<bean id="coreMongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+	<bean id="catMongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg ref="mongo" />
-		<constructor-arg name="databaseName" value="coreDB" />
+		<constructor-arg name="databaseName" value="catalogDB" />
 	</bean>
 
-	<bean id="coreMongoTools" class="com.png.sample.CoreMongoTools">
-		<property name="coreMongoTemplate" ref="coreMongoTemplate">
-		</property>
-	</bean>
-
-</beans>
+	<!-- *****************Mongo Components ends here***************** -->
+	
+	</beans>

@@ -1,6 +1,5 @@
 package com.png.base;
 
-import com.png.catalog.req.vo.PDPReqVO;
 
 /**
  * @author Manish Arora

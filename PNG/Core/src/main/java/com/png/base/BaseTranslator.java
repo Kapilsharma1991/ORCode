@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.png.catalog.constant.CatalogConstants;
 import com.png.catalog.req.vo.PDPReqVO;
 
 /**
@@ -19,7 +20,7 @@ public class BaseTranslator {
 		ObjectMapper mapper = new ObjectMapper();
 	
 		
-		if (theClass.getName().equalsIgnoreCase("PDPReqVO")) {
+		if (theClass.getName().equalsIgnoreCase(CatalogConstants.CLASS_PDP_REQ_VO)) {
 			//obj = getInstance(PDPReqVO.class);
 			try {
 				obj = mapper.readValue(jsonData, PDPReqVO.class);

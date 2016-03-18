@@ -3,6 +3,8 @@
  */
 package com.png.base;
 
+import com.png.catalog.Entity.Product;
+
 /**
  * @author Manish Arora
  *
@@ -10,6 +12,13 @@ package com.png.base;
 public class Output {
 
 	private Object object;
+
+	/**
+	 * @param product
+	 */
+	public Output(Product product) {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Object getObject() {
 		return object;

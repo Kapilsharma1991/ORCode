@@ -10,9 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.png.base.BaseConstants;
 import com.png.base.ErrorMap;
-import com.png.catalog.Entity.Product;
 import com.png.catalog.req.vo.PDPReqVO;
-import com.png.sample.ProductDetail;
 
 /**
  * @author Manish Arora
@@ -33,28 +31,14 @@ public class ProductActorController {
 	
 
 	@RequestMapping(value = "/getProduct/", method = RequestMethod.GET)
-	public Product getPDPContent(HttpServletRequest request, HttpServletResponse response) {
+	public PDPRespVO getPDPContent(HttpServletRequest request, HttpServletResponse response) {
 
 		String json = getJSON(request);
 		PDPReqVO pdpReqVO = (PDPReqVO) pdpTranslator.translateRequest(PDPReqVO.class, json);
 		ErrorMap emap = pdpValidator.validate(pdpReqVO);
-		Product product = pdpManager.getProductDetails(pdpReqVO.getProductId());
-		PDPRespVO pdpResVO = new PDPRespVO();
+		PDPRespVO pdpResVO = pdpManager.getProductDetails(pdpReqVO.getProductId());
 		pdpResVO.setErrorMap(emap);
-		//pdpResVO.setOutput(new );
-		
-		
-		
-		
-
-
-			/*ProductDetail prd = initializeProduct();
-			String prodId = coreTools.createProduct(prd);
-
-			product = coreTools.getProduct(prodId);*/
-
-
-		return product;
+		return pdpResVO;
 	}
 
 	/**
@@ -62,26 +46,32 @@ public class ProductActorController {
 	 * @return
 	 */
 	private String getJSON(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		
 		return request.getParameter(BaseConstants.JSON_DATA);
 	}
 
-	private ProductDetail initializeProduct() {
-
-		ProductDetail prd = new ProductDetail();
-		prd.setName("Sony PLaystation 4");
-		prd.setDescription("PlayStation 4 Ultimate player 1 TB Edition bundled with 2 free games - God of War Remastered and The Last of Us Remastered");
-		prd.setColor("Black");
-		prd.setPrice("RS 40000");
-		return prd;
+	public ProductDetailsManager getPdpManager() {
+		return pdpManager;
 	}
 
-	/*public CoreMongoTools getCoreTools() {
-		return coreTools;
+	public void setPdpManager(ProductDetailsManager pdpManager) {
+		this.pdpManager = pdpManager;
 	}
 
-	public void setCoreTools(CoreMongoTools coreTools) {
-		this.coreTools = coreTools;
-	}*/
+	public ProductDetailsReqTranslator getPdpTranslator() {
+		return pdpTranslator;
+	}
+
+	public void setPdpTranslator(ProductDetailsReqTranslator pdpTranslator) {
+		this.pdpTranslator = pdpTranslator;
+	}
+
+	public ProductDetailsValidator getPdpValidator() {
+		return pdpValidator;
+	}
+
+	public void setPdpValidator(ProductDetailsValidator pdpValidator) {
+		this.pdpValidator = pdpValidator;
+	}
 
 }

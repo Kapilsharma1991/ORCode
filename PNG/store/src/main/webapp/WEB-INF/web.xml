@@ -5,7 +5,7 @@
    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
    <display-name>PNG Store</display-name>
-
+<!-- 
    <servlet>
       <servlet-name>HelloWeb</servlet-name>
       <servlet-class>
@@ -16,8 +16,8 @@
 
    <servlet-mapping>
       <servlet-name>HelloWeb</servlet-name>
-      <url-pattern>/</url-pattern>
-   </servlet-mapping>
+      <url-pattern>/sample/</url-pattern>
+   </servlet-mapping> -->
  
    <servlet>
       <servlet-name>PngWeb</servlet-name>
@@ -29,7 +29,7 @@
 
    <servlet-mapping>
       <servlet-name>PngWeb</servlet-name>
-      <url-pattern>/services/</url-pattern>
+      <url-pattern>/</url-pattern>
    </servlet-mapping>
  
 </web-app>
