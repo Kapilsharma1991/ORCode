@@ -10,15 +10,13 @@ import com.png.catalog.Entity.Product;
  *
  */
 public class Output {
+	
+	public Output(Object obj) {
+		this.object = obj;
+		
+	}
 
 	private Object object;
-
-	/**
-	 * @param product
-	 */
-	public Output(Product product) {
-		// TODO Auto-generated constructor stub
-	}
 
 	public Object getObject() {
 		return object;
@@ -27,6 +25,8 @@ public class Output {
 	public void setObject(Object object) {
 		this.object = object;
 	}
+
+
 }
 
 

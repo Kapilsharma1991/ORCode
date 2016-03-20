@@ -1,9 +1,10 @@
 package com.png.catalog.Entity;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 /**
  * @author Manish Arora
@@ -14,10 +15,27 @@ public class Vku {
 	@Id
 	private String id;
 	
+	@Indexed(unique = true)
+	private String vkuId;
+	
+	public String getVkuId() {
+		return vkuId;
+	}
+	public void setVkuId(String vkuId) {
+		this.vkuId = vkuId;
+	}
+	public String getSkuId() {
+		return skuId;
+	}
+	public void setSkuId(String skuId) {
+		this.skuId = skuId;
+	}
 	private String vendorId;
-	private Date permitStartDate;
-	private Date permitEndDate;
+	private Calendar permitStartDate;
+	private Calendar permitEndDate;
 	private List<String> bookings;
+	private VkuPricePoint vkuPricePoint;
+	private String skuId; 
 	
 	public String getVendorId() {
 		return vendorId;
@@ -25,17 +43,23 @@ public class Vku {
 	public void setVendorId(String vendorId) {
 		this.vendorId = vendorId;
 	}
-	public Date getPermitStartDate() {
+	public Calendar getPermitStartDate() {
 		return permitStartDate;
 	}
-	public void setPermitStartDate(Date permitStartDate) {
+	public void setPermitStartDate(Calendar permitStartDate) {
 		this.permitStartDate = permitStartDate;
 	}
-	public Date getPermitEndDate() {
+	public Calendar getPermitEndDate() {
 		return permitEndDate;
 	}
-	public void setPermitEndDate(Date permitEndDate) {
+	public void setPermitEndDate(Calendar permitEndDate) {
 		this.permitEndDate = permitEndDate;
+	}
+	public VkuPricePoint getVkuPricePoint() {
+		return vkuPricePoint;
+	}
+	public void setVkuPricePoint(VkuPricePoint vkuPricePoint) {
+		this.vkuPricePoint = vkuPricePoint;
 	}
 	public List<String> getBookings() {
 		return bookings;

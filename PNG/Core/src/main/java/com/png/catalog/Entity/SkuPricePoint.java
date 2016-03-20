@@ -4,12 +4,8 @@ package com.png.catalog.Entity;
  * @author Manish Arora
  *
  */
-import org.springframework.data.annotation.Id;
 
 public class SkuPricePoint {
-	
-	@Id
-	private String Id;
 	
 	private float dailyPrice;
 	private float weeklyPrice;
@@ -40,10 +36,6 @@ public class SkuPricePoint {
 	public void setQuaterlyPrice(float quaterlyPrice) {
 		this.quaterlyPrice = quaterlyPrice;
 	}
-	public String getId() {
-		return Id;
-	}
-	
 	
 
 }

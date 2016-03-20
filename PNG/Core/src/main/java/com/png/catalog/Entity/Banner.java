@@ -1,6 +1,5 @@
 package com.png.catalog.Entity;
 
-import org.springframework.data.annotation.Id;
 
 /**
  * @author Manish Arora
@@ -8,8 +7,6 @@ import org.springframework.data.annotation.Id;
  */
 public class Banner {
 
-	@Id
-	private String id;
 	
 	private String name;
 	private String bannerImage;
@@ -83,10 +80,6 @@ public class Banner {
 
 	public void setPriority(int priority) {
 		this.priority = priority;
-	}
-
-	public String getId() {
-		return id;
 	}
 
 

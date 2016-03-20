@@ -1,6 +1,8 @@
 package com.png.catalog;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.png.base.BaseConstants;
 import com.png.base.ErrorMap;
+import com.png.base.Output;
+import com.png.base.ResponseVO;
 import com.png.catalog.Entity.Banner;
 import com.png.catalog.Entity.Catalog;
 import com.png.catalog.Entity.Category;
@@ -21,6 +25,8 @@ import com.png.catalog.Entity.ProductImage;
 import com.png.catalog.Entity.Sku;
 import com.png.catalog.Entity.SkuImage;
 import com.png.catalog.Entity.SkuPricePoint;
+import com.png.catalog.Entity.Vku;
+import com.png.catalog.Entity.VkuPricePoint;
 import com.png.catalog.req.vo.PDPReqVO;
 
 /**
@@ -39,10 +45,12 @@ public class ProductActorController {
 	private ProductDetailsValidator pdpValidator;
 
 	@RequestMapping(value = "/getProduct/", method = RequestMethod.GET)
-	public PDPRespVO getPDPContent(HttpServletRequest request,
+	public ResponseVO getPDPContent(HttpServletRequest request,
 			HttpServletResponse response) {
 
 		initialSetup();
+		
+		ResponseVO responseVO = new ResponseVO();
 
 		String json = getJSON(request);
 		PDPReqVO pdpReqVO = (PDPReqVO) pdpTranslator.translateRequest(
@@ -50,8 +58,11 @@ public class ProductActorController {
 		ErrorMap emap = pdpValidator.validate(pdpReqVO);
 		PDPRespVO pdpResVO = pdpManager.getProductDetails(pdpReqVO
 				.getProductId());
-		pdpResVO.setErrorMap(emap);
-		return pdpResVO;
+		Output output = new Output(pdpResVO);
+		
+		responseVO.setErrorMap(emap);
+		responseVO.setOutput(output);
+		return responseVO;
 	}
 
 	/**
@@ -59,13 +70,12 @@ public class ProductActorController {
 	 */
 	private void initialSetup() {
 
-		initCatalog();
-		initCategory();
-		initChldCategories();
-		initProduct();
-		initSkus();
-		initRecommendedProducts();
 		initVku();
+		initSkus();
+		initProduct();
+		initChldCategories();
+		initCategory();
+		initCatalog();
 
 	}
 
@@ -150,10 +160,10 @@ public class ProductActorController {
 		c4.setRoot(true);
 		c4.setChildCategories(childCategories4);
 
-		pdpManager.createCategory(c1);
-		pdpManager.createCategory(c2);
-		pdpManager.createCategory(c3);
-		pdpManager.createCategory(c4);
+		pdpManager.createCatalogItem(c1);
+		pdpManager.createCatalogItem(c2);
+		pdpManager.createCatalogItem(c3);
+		pdpManager.createCatalogItem(c4);
 
 	}
 
@@ -161,15 +171,23 @@ public class ProductActorController {
 	 * 
 	 */
 	private void initVku() {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * 
-	 */
-	private void initRecommendedProducts() {
-		// TODO Auto-generated method stub
+		
+		Vku vku = new Vku();
+		Calendar start = new GregorianCalendar(2016,3,01);
+		Calendar end  = new GregorianCalendar(2016,3,01);
+		VkuPricePoint vpp = new VkuPricePoint();
+		vpp.setFullRetailPrice(40000);
+		vpp.setOfferBuyOption(false);
+		vpp.setOfferBuyPrice(12000);
+		
+		vku.setPermitStartDate(start);
+		vku.setPermitEndDate(end);
+		vku.setVendorId("vend0001");
+		vku.setSkuId("sku0001");
+		vku.setVkuId("vku0001");
+		vku.setVkuPricePoint(vpp);
+		
+		pdpManager.createCatalogItem(vku);
 
 	}
 
@@ -178,6 +196,8 @@ public class ProductActorController {
 	 */
 	private void initSkus() {
 		
+		List<String> vkus = new ArrayList<String>();
+		vkus.add("vku0001");
 		
 		List<SkuImage> sil1 = new ArrayList<SkuImage>();
 		SkuImage si1 = new SkuImage();
@@ -202,7 +222,9 @@ public class ProductActorController {
 		sku1.setSkuId("sku0001");	
 		sku1.setSkuImage(sil1);
 		sku1.setSkuPricePoint(pp);
-		//sku1.setVkus(vkus);  ***********Pending***********
+		sku1.setVkus(vkus);  
+		
+		pdpManager.createCatalogItem(sku1);
 
 	}
 
@@ -216,7 +238,7 @@ public class ProductActorController {
 		i1.setLargeImage("/docs/images/catalog/product/Large_P1.jpg");
 		i1.setMedIMage("/docs/images/catalog/product/Med_P1.jpg");
 		i1.setSmallImage("/docs/images/catalog/product/Small_P1.jpg");
-		i1.setThumbnailImage("/docs/images/catalog/product/Thumb_P1.jpg");
+		i1.setThumbnailImage("/docs/images/catalog/product/ThuRmb_P1.jpg");
 		
 		List<String> recommendedProducts = new ArrayList<String>();
 		recommendedProducts.add("prd1001");
@@ -224,13 +246,23 @@ public class ProductActorController {
 		
 		List<String> skus = new ArrayList<String>();
 		skus.add("sku0001");
+		
+		List<String> whatsIncluded = new ArrayList<String>();
+		whatsIncluded.add("1 Gaming Console");
+		whatsIncluded.add("1 Wireless Controller");
+		whatsIncluded.add("1 Power Cord");
+		whatsIncluded.add("1 USB Cable for charging Controller");
+		whatsIncluded.add("1 HDMI Cable");
+		whatsIncluded.add("1 VGA Cable");
 
 		Product prod1 = new Product();
 		prod1.setProductId("prd0001");
 		prod1.setName("Sony PlayStation 4 (PS4) 500 GB");
-		prod1.setAggregateRating((float) 4.6);
+		prod1.setAggregateRating( 4.6);
 		prod1.setDescription("Features such as an exceptional graphics performance and a customized memory make the PlayStation4 an immersive gaming experience. A processor that is 10 times more powerful than the PlayStation3 creates a setting that is bigger and bolder.");
 		prod1.setNumOfReviews(133);
+		prod1.setBrand("Sony");
+		prod1.setWhatsIncluded(whatsIncluded);
 		prod1.setParentCategoryId("chldCat001");
 		pi.add(i1);
 		prod1.setProductImage(pi);
@@ -252,18 +284,28 @@ public class ProductActorController {
 		
 		List<String> skus2 = new ArrayList<String>();
 		skus2.add("sku0002");
+		
+		List<String> whatsIncluded2 = new ArrayList<String>();
+		whatsIncluded2.add("1 Stroller");
+		whatsIncluded2.add("Cup holder for 2 cups");
+		whatsIncluded2.add("Safety Latch");
 
 		Product prod2 = new Product();
 		prod2.setProductId("prd0002");
 		prod2.setName("Luvlap Baby Stroller");
-		prod2.setAggregateRating((float) 4.6);
+		prod2.setAggregateRating( 4.6);
 		prod2.setDescription("Make your little angel’s outdoor trips more safe and secure with the help of this Luvlap Baby Stroller that comes in an attractive print.");
 		prod2.setNumOfReviews(43);
+		prod2.setBrand("Luvlap");
+		prod2.setWhatsIncluded(whatsIncluded2);
 		prod2.setParentCategoryId("chldCat002");
 		pi2.add(i12);
 		prod2.setProductImage(pi2);
 		prod2.setRecommendedProducts(recommendedProducts2);
 		prod2.setSkus(skus2);
+		
+		pdpManager.createCatalogItem(prod1);
+		pdpManager.createCatalogItem(prod2);
 		
 		
 	}
@@ -321,10 +363,10 @@ public class ProductActorController {
 		c4.setRoot(false);
 		c4.setChildProducts(chldProd4);
 
-		pdpManager.createCategory(c1);
-		pdpManager.createCategory(c2);
-		pdpManager.createCategory(c3);
-		pdpManager.createCategory(c4);
+		pdpManager.createCatalogItem(c1);
+		pdpManager.createCatalogItem(c2);
+		pdpManager.createCatalogItem(c3);
+		pdpManager.createCatalogItem(c4);
 
 	}
 
@@ -342,7 +384,7 @@ public class ProductActorController {
 		rootCategories.add("cat003"); // sports
 		rootCategories.add("cat004"); // Art
 		catalog.setRootCategories(rootCategories);
-		pdpManager.createCatalog(catalog);
+		pdpManager.createCatalogItem(catalog);
 
 	}
 

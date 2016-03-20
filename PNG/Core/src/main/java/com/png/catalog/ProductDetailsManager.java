@@ -1,10 +1,10 @@
 package com.png.catalog;
 
+import java.util.List;
+
 import com.png.base.BaseManager;
-import com.png.base.Output;
-import com.png.catalog.Entity.Catalog;
-import com.png.catalog.Entity.Category;
 import com.png.catalog.Entity.Product;
+import com.png.catalog.Entity.Sku;
 
 /**
  * @author Manish Arora
@@ -30,26 +30,20 @@ public class ProductDetailsManager extends BaseManager {
 	public PDPRespVO getProductDetails(String prodId) {
 		
 		PDPRespVO pdpResVO = new PDPRespVO();
-		Product p = catalogTools.getProduct(prodId);
-		Output output = new Output(p);
-		pdpResVO.setOutput(output);
+		Product prod = catalogTools.getProduct(prodId);
+		List<Sku> skus = catalogTools.getSkus(prod.getSkus());
+        pdpResVO.setProduct(prod);
+        pdpResVO.setSkus(skus);
 		return pdpResVO;
 	}
 
-	/**
-	 * @param catalog 
-	 * 
-	 */
-	public void createCatalog(Catalog catalog) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	/**
-	 * @param c1
+	 * @param object
 	 */
-	public void createCategory(Category c1) {
-		// TODO Auto-generated method stub
+	public void createCatalogItem(Object object) {
+		
+		catalogTools.createCatalogItem(object);
 		
 	}
 

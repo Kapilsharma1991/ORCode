@@ -1,6 +1,5 @@
 package com.png.catalog.Entity;
 
-import org.springframework.data.annotation.Id;
 
 /**
  * @author Manish Arora
@@ -8,17 +7,13 @@ import org.springframework.data.annotation.Id;
  */
 public class BaseItemImage {
 	
-	@Id
-	private String id;
-	
+
 	private String thumbnailImage;
 	private String smallImage;
 	private String medIMage;
 	private String largeImage;
 	
-	public String getId() {
-		return id;
-	}
+
 	public String getThumbnailImage() {
 		return thumbnailImage;
 	}
