@@ -13,6 +13,19 @@ public class Catalog {
 	@Id
 	private String id;
 	
+	private String catalogId;
+	/**
+	 * @return the catalogId
+	 */
+	public String getCatalogId() {
+		return catalogId;
+	}
+	/**
+	 * @param catalogId the catalogId to set
+	 */
+	public void setCatalogId(String catalogId) {
+		this.catalogId = catalogId;
+	}
 	private String name;
 	private String description;
 	private List<String> rootCategories;

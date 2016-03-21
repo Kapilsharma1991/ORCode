@@ -48,7 +48,7 @@ public class ProductActorController {
 	public ResponseVO getPDPContent(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		initialSetup();
+		//initialSetup();
 		
 		ResponseVO responseVO = new ResponseVO();
 
@@ -152,7 +152,7 @@ public class ProductActorController {
 		c3.setChildCategories(childCategories3);
 
 		Category c4 = new Category();
-		c4.setCategoryId("cat001");
+		c4.setCategoryId("cat004");
 		c4.setThumbnailImage("/docs/images/catalog/category/Thumb_C4.jpg");
 		c4.setBanners(bannerList);
 		c4.setName("Art");
@@ -376,6 +376,7 @@ public class ProductActorController {
 	private void initCatalog() {
 
 		Catalog catalog = new Catalog();
+		catalog.setCatalogId("catalog01");
 		catalog.setName("OR Catalog");
 		catalog.setDescription("Base catalog for OR");
 		List<String> rootCategories = new ArrayList<String>();
