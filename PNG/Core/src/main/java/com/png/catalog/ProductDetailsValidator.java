@@ -5,7 +5,7 @@ import com.png.base.BaseRequestVO;
 import com.png.base.BaseValidator;
 import com.png.base.ErrorMap;
 import com.png.catalog.constant.CatalogErrorMsgConstants;
-import com.png.catalog.req.vo.PDPReqVO;
+import com.png.catalog.vo.PDPReqVO;
 
 /**
  * @author Manish Arora

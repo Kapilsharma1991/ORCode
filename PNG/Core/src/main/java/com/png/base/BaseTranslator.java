@@ -5,8 +5,10 @@ import java.io.IOException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.png.cart.constant.CartConstants;
+import com.png.cart.vo.CartModifierReqVO;
 import com.png.catalog.constant.CatalogConstants;
-import com.png.catalog.req.vo.PDPReqVO;
+import com.png.catalog.vo.PDPReqVO;
 
 /**
  * @author Manish Arora
@@ -21,9 +23,24 @@ public class BaseTranslator {
 	
 		
 		if (theClass.getName().equalsIgnoreCase(CatalogConstants.CLASS_PDP_REQ_VO)) {
-			//obj = getInstance(PDPReqVO.class);
+			
 			try {
 				obj = mapper.readValue(jsonData, PDPReqVO.class);
+			} catch (JsonParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} else 	if (theClass.getName().equalsIgnoreCase(CartConstants.CLASS_CART_MODIFIER_REQ_VO)) {
+			
+			try {
+				obj = mapper.readValue(jsonData, CartModifierReqVO.class);
 			} catch (JsonParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

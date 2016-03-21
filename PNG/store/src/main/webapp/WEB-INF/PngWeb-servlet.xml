@@ -48,6 +48,32 @@
 	
 	
 	
+	<!-- *****************Cart Modifier Components start here***************** -->
+
+	<bean id="cartModifierActorController" class="com.png.cart.CartModifierActorController">
+		<property name="cartManager" ref="cartManager"></property>
+		<property name="cartTranslator" ref="cartTranslator"></property>
+		<property name="cartValidator" ref="cartValidator"></property>
+	</bean>
+
+	<bean id="cartManager" class="com.png.cart.CartManager">
+		<property name="orderTools" ref="orderTools">
+		</property>
+	</bean>
+
+	<bean id="cartTranslator" class="com.png.cart.CartReqTranslator"></bean>
+
+	<bean id="cartValidator" class="com.png.cart.CartValidator"></bean>
+
+	<bean id="orderTools" class="com.png.cart.OrderTools">
+		<property name="coreMongoTemplate" ref="coreMongoTemplate">
+		</property>
+	</bean>
+
+	<!-- *****************Cart Modifier Components ends here***************** -->
+	
+	
+	
 
 	<!-- *****************Mongo Components Starts here***************** -->
 
@@ -56,6 +82,15 @@
 	<bean id="catMongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg ref="mongo" />
 		<constructor-arg name="databaseName" value="catalogDB" />
+		  <property name="writeConcern">
+            <util:constant static-field="com.mongodb.WriteConcern.SAFE" ></util:constant>
+        </property>
+	</bean>
+	
+	
+	<bean id="coreMongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongo" />
+		<constructor-arg name="databaseName" value="CoreDB" />
 		  <property name="writeConcern">
             <util:constant static-field="com.mongodb.WriteConcern.SAFE" ></util:constant>
         </property>

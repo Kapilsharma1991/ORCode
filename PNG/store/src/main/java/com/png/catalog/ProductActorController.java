@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.png.base.BaseConstants;
+import com.png.base.BaseController;
 import com.png.base.ErrorMap;
 import com.png.base.Output;
 import com.png.base.ResponseVO;
@@ -27,7 +28,8 @@ import com.png.catalog.Entity.SkuImage;
 import com.png.catalog.Entity.SkuPricePoint;
 import com.png.catalog.Entity.Vku;
 import com.png.catalog.Entity.VkuPricePoint;
-import com.png.catalog.req.vo.PDPReqVO;
+import com.png.catalog.vo.PDPReqVO;
+import com.png.catalog.vo.PDPRespVO;
 
 /**
  * @author Manish Arora
@@ -38,7 +40,7 @@ import com.png.catalog.req.vo.PDPReqVO;
 @EnableWebMvc
 @ResponseBody
 @RequestMapping(value = "/ProductActor/", headers = "Accept=*/*", produces = "application/json")
-public class ProductActorController {
+public class ProductActorController extends BaseController {
 
 	private ProductDetailsManager pdpManager;
 	private ProductDetailsReqTranslator pdpTranslator;
@@ -389,14 +391,6 @@ public class ProductActorController {
 
 	}
 
-	/**
-	 * @param request
-	 * @return
-	 */
-	private String getJSON(HttpServletRequest request) {
-
-		return request.getParameter(BaseConstants.JSON_DATA);
-	}
 
 	public ProductDetailsManager getPdpManager() {
 		return pdpManager;

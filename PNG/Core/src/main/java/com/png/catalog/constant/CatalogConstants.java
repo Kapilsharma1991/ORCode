@@ -9,7 +9,7 @@ package com.png.catalog.constant;
  */
 public class CatalogConstants {
 
-	public static final String CLASS_PDP_REQ_VO = "com.png.catalog.req.vo.PDPReqVO";
+	public static final String CLASS_PDP_REQ_VO = "com.png.catalog.vo.PDPReqVO";
 }
 
 

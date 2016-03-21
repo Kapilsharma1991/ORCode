@@ -9,7 +9,7 @@ public class BaseValidator {
 
 	
 	/**
-	 * @param pdpReqVO 
+	 * @param reqVO 
 	 * @return
 	 */
 	public ErrorMap validate(BaseRequestVO reqVO) {
