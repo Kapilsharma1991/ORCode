@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Query;
 
 import com.png.catalog.Entity.Product;
 import com.png.catalog.Entity.Sku;
+import com.png.catalog.Entity.Vku;
 
 /**
  * @author Manish Arora
@@ -68,10 +69,39 @@ public class CatalogTools {
 	 * @param sku
 	 * @return
 	 */
-	private Sku getSku(String skuId) {
+	public Sku getSku(String skuId) {
 		
 		Query query = new Query(Criteria.where("skuId").is(skuId));	
 		return catMongoTemplate.find(query, Sku.class).get(0);
+	}
+
+	/**
+	 * @param availableVku
+	 * @param id
+	 */
+	public void updateVkuWithBookingId(String availableVku, String bookingId) {
+		
+		Vku vku = getVku(availableVku);
+		vku.setBookings(vku.getBookings().add(bookingId) ? vku.getBookings():vku.getBookings());
+		updateVku(vku);
+	}
+
+	/**
+	 * @param vku
+	 */
+	public void updateVku(Vku vku) {
+		catMongoTemplate.save(vku);
+		
+	}
+
+	/**
+	 * @param availableVku
+	 * @return
+	 */
+	public Vku getVku(String vkuId) {
+		
+		Query query = new Query(Criteria.where("vkuId").is(vkuId));	
+		return catMongoTemplate.find(query, Vku.class).get(0);
 	}
 
 }

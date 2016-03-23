@@ -26,10 +26,7 @@ public class CartValidator extends BaseValidator {
 		
 		CartModifierReqVO vo = (CartModifierReqVO) reqVO;
 		
-		if (vo.getVkuId() == null) {
-			emap.setErrorMessage(CatalogErrorMsgConstants.MISSING_VKU_ID);
-			emap.setErrorCode(BaseConstants.ERROR_CODE_ONE);
-		} else if (vo.getSkuId() == null) {
+	 if (vo.getSkuId() == null) {
 			emap.setErrorMessage(CatalogErrorMsgConstants.MISSING_SKU_ID);
 			emap.setErrorCode(BaseConstants.ERROR_CODE_ONE);
 		} else if (vo.getProductId() == null) {

@@ -9,21 +9,37 @@ package com.png.cart.vo;
  */
 public class CartModifierRespVO {
 	
-	private String test;
+	private String orderId;
+	private String userFlowMsg;
 
 	/**
-	 * @return the test
+	 * @return the userFlowMsg
 	 */
-	public String getTest() {
-		return test;
+	public String getUserFlowMsg() {
+		return userFlowMsg;
 	}
 
 	/**
-	 * @param test the test to set
+	 * @param userFlowMsg the userFlowMsg to set
 	 */
-	public void setTest(String test) {
-		this.test = test;
+	public void setUserFlowMsg(String userFlowMsg) {
+		this.userFlowMsg = userFlowMsg;
 	}
+
+	/**
+	 * @return the orderId
+	 */
+	public String getOrderId() {
+		return orderId;
+	}
+
+	/**
+	 * @param orderId the orderId to set
+	 */
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+	
 
 }
 

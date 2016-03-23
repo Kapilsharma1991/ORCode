@@ -2,6 +2,7 @@ package com.png.catalog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import com.png.base.BaseConstants;
 import com.png.base.BaseController;
 import com.png.base.ErrorMap;
 import com.png.base.Output;
@@ -50,7 +50,7 @@ public class ProductActorController extends BaseController {
 	public ResponseVO getPDPContent(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		//initialSetup();
+		initialSetup();
 		
 		ResponseVO responseVO = new ResponseVO();
 
@@ -175,15 +175,14 @@ public class ProductActorController extends BaseController {
 	private void initVku() {
 		
 		Vku vku = new Vku();
-		Calendar start = new GregorianCalendar(2016,3,01);
-		Calendar end  = new GregorianCalendar(2016,3,01);
+				
 		VkuPricePoint vpp = new VkuPricePoint();
 		vpp.setFullRetailPrice(40000);
 		vpp.setOfferBuyOption(false);
 		vpp.setOfferBuyPrice(12000);
 		
-		vku.setPermitStartDate(start);
-		vku.setPermitEndDate(end);
+		vku.setPermitStartDate("01-03-2016");
+		vku.setPermitEndDate("30-05-2016");
 		vku.setVendorId("vend0001");
 		vku.setSkuId("sku0001");
 		vku.setVkuId("vku0001");

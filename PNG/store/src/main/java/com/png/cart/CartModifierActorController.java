@@ -89,9 +89,7 @@ public class CartModifierActorController extends BaseController {
 		CartModifierReqVO addToCartReqVO = (CartModifierReqVO) cartTranslator
 				.translateRequest(CartModifierReqVO.class, json);
 		ErrorMap emap = cartValidator.validate(addToCartReqVO);
-		CartModifierRespVO addToCartResVO = cartManager.addItemToCart(
-				addToCartReqVO.getProductId(), addToCartReqVO.getSkuId(),
-				addToCartReqVO.getVkuId());
+		CartModifierRespVO addToCartResVO = cartManager.addItemToCart(addToCartReqVO);
 		Output output = new Output(addToCartResVO);
 
 		responseVO.setErrorMap(emap);

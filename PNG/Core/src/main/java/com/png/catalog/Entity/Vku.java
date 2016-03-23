@@ -1,6 +1,6 @@
 package com.png.catalog.Entity;
 
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -14,64 +14,95 @@ public class Vku {
 
 	@Id
 	private String id;
-	
+
 	@Indexed(unique = true)
 	private String vkuId;
-	
+
 	public String getVkuId() {
 		return vkuId;
 	}
+
 	public void setVkuId(String vkuId) {
 		this.vkuId = vkuId;
 	}
+
 	public String getSkuId() {
 		return skuId;
 	}
+
 	public void setSkuId(String skuId) {
 		this.skuId = skuId;
 	}
+
 	private String vendorId;
-	private Calendar permitStartDate;
-	private Calendar permitEndDate;
+
+	private String permitStartDate;
+	private String permitEndDate;
+
 	private List<String> bookings;
 	private VkuPricePoint vkuPricePoint;
-	private String skuId; 
-	
+	private String skuId;
+
 	public String getVendorId() {
 		return vendorId;
 	}
+
 	public void setVendorId(String vendorId) {
 		this.vendorId = vendorId;
 	}
-	public Calendar getPermitStartDate() {
+
+	/**
+	 * @return the permitStartDate
+	 */
+	public String getPermitStartDate() {
 		return permitStartDate;
 	}
-	public void setPermitStartDate(Calendar permitStartDate) {
+
+	/**
+	 * @param permitStartDate
+	 *            the permitStartDate to set
+	 */
+	public void setPermitStartDate(String permitStartDate) {
 		this.permitStartDate = permitStartDate;
 	}
-	public Calendar getPermitEndDate() {
+
+	/**
+	 * @return the permitEndDate
+	 */
+	public String getPermitEndDate() {
 		return permitEndDate;
 	}
-	public void setPermitEndDate(Calendar permitEndDate) {
+
+	/**
+	 * @param permitEndDate
+	 *            the permitEndDate to set
+	 */
+	public void setPermitEndDate(String permitEndDate) {
 		this.permitEndDate = permitEndDate;
 	}
+
 	public VkuPricePoint getVkuPricePoint() {
 		return vkuPricePoint;
 	}
+
 	public void setVkuPricePoint(VkuPricePoint vkuPricePoint) {
 		this.vkuPricePoint = vkuPricePoint;
 	}
+
 	public List<String> getBookings() {
-		return bookings;
+		if (null != bookings) {
+			return bookings;
+		} else {
+			return new ArrayList<String>();
+		}
 	}
+
 	public void setBookings(List<String> bookings) {
 		this.bookings = bookings;
 	}
+
 	public String getId() {
 		return id;
 	}
-	
-	
-	
-	
+
 }

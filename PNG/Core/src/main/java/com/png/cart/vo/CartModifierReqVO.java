@@ -13,8 +13,11 @@ public class CartModifierReqVO extends BaseRequestVO {
 
 	private String productId;
 	private String skuId;
-	private String vkuId;
+
 	private String action;
+	private String bookingStartDate;
+	private String bookingEndDate;
+	private int qty;
 	/**
 	 * @return the productId
 	 */
@@ -39,18 +42,7 @@ public class CartModifierReqVO extends BaseRequestVO {
 	public void setSkuId(String skuId) {
 		this.skuId = skuId;
 	}
-	/**
-	 * @return the vkuId
-	 */
-	public String getVkuId() {
-		return vkuId;
-	}
-	/**
-	 * @param vkuId the vkuId to set
-	 */
-	public void setVkuId(String vkuId) {
-		this.vkuId = vkuId;
-	}
+
 	/**
 	 * @return the action
 	 */
@@ -62,7 +54,47 @@ public class CartModifierReqVO extends BaseRequestVO {
 	 */
 	public void setAction(String action) {
 		this.action = action;
+
 	}
+	/**
+	 * @return the bookingStartDate
+	 */
+	public String getBookingStartDate() {
+		return bookingStartDate;
+	}
+	/**
+	 * @param bookingStartDate the bookingStartDate to set
+	 */
+	public void setBookingStartDate(String bookingStartDate) {
+		this.bookingStartDate = bookingStartDate;
+	}
+	/**
+	 * @return the bookingEndDate
+	 */
+	public String getBookingEndDate() {
+		return bookingEndDate;
+	}
+	/**
+	 * @param bookingEndDate the bookingEndDate to set
+	 */
+	public void setBookingEndDate(String bookingEndDate) {
+		this.bookingEndDate = bookingEndDate;
+	}
+	/**
+	 * @return the qty
+	 */
+	public int getQty() {
+		return qty;
+	}
+	/**
+	 * @param qty the qty to set
+	 */
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+	
+	
 }
+
 
 
