@@ -85,6 +85,8 @@
 	<bean id="orderManager" class="com.png.order.OrderManager">
 		<property name="orderTools" ref="orderTools"></property>
 		<property name="sessionManager" ref="sessionManager"></property>
+		<property name="pricingEngine" ref="pricingEngine"></property>
+		
 	</bean>
 
 	<bean id="orderTools" class="com.png.order.OrderTools">
@@ -95,7 +97,20 @@
 	<!-- *****************Order Modifier Components ends here***************** -->
 
 
+	<!-- *****************Pricing Components start here***************** -->
 
+	<bean id="pricingEngine" class="com.png.order.pricing.PricingEngine">
+		<property name="itemPriceCalculator" ref="itemPriceCalculator"></property>
+		<property name="orderPriceCalculator" ref="orderPriceCalculator"></property>
+	</bean>
+
+	<bean id="itemPriceCalculator" class="com.png.order.pricing.ItemPriceCalculator">
+	<property name="catalogTools" ref="catalogTools"></property>
+	</bean>
+	
+	<bean id="orderPriceCalculator" class="com.png.order.pricing.OrderPriceCalculator"></bean>
+
+	<!-- *****************Pricing Modifier Components ends here***************** -->
 
 
 	<!-- *****************Reservation Components start here***************** -->
@@ -103,6 +118,7 @@
 	<bean id="reservationEngine" class="com.png.reservation.ReservationEngine">
 		<property name="reservationTools" ref="reservationTools"></property>
 		<property name="catalogTools" ref="catalogTools"></property>
+		<property name="pricingEngine" ref="pricingEngine"></property>
 	</bean>
 
 	<bean id="reservationTools" class="com.png.reservation.ReservationTools">

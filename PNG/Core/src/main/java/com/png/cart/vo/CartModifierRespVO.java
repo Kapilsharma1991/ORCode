@@ -10,21 +10,6 @@ package com.png.cart.vo;
 public class CartModifierRespVO {
 	
 	private String orderId;
-	private String userFlowMsg;
-
-	/**
-	 * @return the userFlowMsg
-	 */
-	public String getUserFlowMsg() {
-		return userFlowMsg;
-	}
-
-	/**
-	 * @param userFlowMsg the userFlowMsg to set
-	 */
-	public void setUserFlowMsg(String userFlowMsg) {
-		this.userFlowMsg = userFlowMsg;
-	}
 
 	/**
 	 * @return the orderId

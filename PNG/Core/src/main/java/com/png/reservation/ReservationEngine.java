@@ -14,6 +14,7 @@ import com.png.base.BaseConstants;
 import com.png.catalog.CatalogTools;
 import com.png.catalog.Entity.Sku;
 import com.png.catalog.Entity.Vku;
+import com.png.order.pricing.PricingEngine;
 import com.png.reservation.Entity.Booking;
 import com.png.reservation.constant.ReservationConstants;
 
@@ -25,6 +26,21 @@ public class ReservationEngine {
 
 	private ReservationTools reservationTools;
 	private CatalogTools catalogTools;
+	private PricingEngine pricingEngine;
+
+	/**
+	 * @return the pricingEngine
+	 */
+	public PricingEngine getPricingEngine() {
+		return pricingEngine;
+	}
+
+	/**
+	 * @param pricingEngine the pricingEngine to set
+	 */
+	public void setPricingEngine(PricingEngine pricingEngine) {
+		this.pricingEngine = pricingEngine;
+	}
 
 	/**
 	 * @return the reservationTools
@@ -110,11 +126,14 @@ public class ReservationEngine {
 				List<Booking> bookingList = new ArrayList<Booking>();
 
 				for (String bookingId : vku.getBookings()) {
-					Booking booking = reservationTools.getBooking(bookingId);
-					bookingList.add(booking);
+					Booking booking = reservationTools
+							.getActiveBooking(bookingId);
+					if (null != booking) {
+						bookingList.add(booking);
+					}
 				}
 
-				int size = bookingList.size(); 
+				int size = bookingList.size();
 				if (bookingList.size() == 0) {
 					return true;
 				}
@@ -130,7 +149,6 @@ public class ReservationEngine {
 					return isVkuAvaillable;
 				}
 
-			
 				for (int i = 1; i < bookingList.size(); i++) {
 
 					Date ped = df.parse(bookingList.get(i - 1).getEndDate());
@@ -158,15 +176,17 @@ public class ReservationEngine {
 	 * @param skuId
 	 * @param bookingStartDate
 	 * @param bookingEndDate
+	 * @param string 
 	 * @return
 	 */
-	public Booking createBooking(String vkuId, String bookingStartDate,
+	public Booking createBooking(String vkuId, String skuId, String bookingStartDate,
 			String bookingEndDate) {
 
 		Booking booking = new Booking(ReservationConstants.BOOKING_STATUS_OPEN);
 		booking.setVkuId(vkuId);
 		booking.setStartDate(bookingStartDate);
 		booking.setEndDate(bookingEndDate);
+		booking.setItemPriceInfo(getPricingEngine().repriceBooking(bookingStartDate,bookingEndDate , skuId));
 		return getReservationTools().createBooking(booking);
 	}
 

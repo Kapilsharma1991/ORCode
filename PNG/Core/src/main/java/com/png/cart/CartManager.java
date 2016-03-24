@@ -6,6 +6,7 @@ package com.png.cart;
 import java.util.List;
 
 import com.png.base.BaseManager;
+import com.png.base.ErrorMap;
 import com.png.cart.constant.CartErrorMessageConstants;
 import com.png.cart.vo.CartModifierReqVO;
 import com.png.cart.vo.CartModifierRespVO;
@@ -88,9 +89,10 @@ public class CartManager extends BaseManager {
 
 	/**
 	 * @param addToCartReqVO
+	 * @param emap 
 	 * @return
 	 */
-	public CartModifierRespVO addItemToCart(CartModifierReqVO addToCartReqVO) {
+	public CartModifierRespVO addItemToCart(CartModifierReqVO addToCartReqVO, ErrorMap emap) {
 
 				CartModifierRespVO resp = new CartModifierRespVO();
 		List<String> availableVkus = reservationEngine.checkAvailability(
@@ -105,30 +107,31 @@ public class CartManager extends BaseManager {
 			List<Booking> bookings = order.getBookings();
 			
 			for (String availableVku : availableVkus) {
-				Booking booking = reservationEngine.createBooking(availableVku,
+				Booking booking = reservationEngine.createBooking(availableVku, addToCartReqVO.getSkuId(),
 						addToCartReqVO.getBookingStartDate(),
 						addToCartReqVO.getBookingEndDate());
 
 				catalogTools.updateVkuWithBookingId(availableVku,
 						booking.getId());
-
-				orderManager.repriceBooking(booking, addToCartReqVO.getSkuId());
 				bookings.add(booking);
 			}
 			
 			order.setBookings(bookings);
+			orderManager.repriceOrder(order);
 			resp.setOrderId(orderManager.updateOrder(order));
 			
 
 		} else { 
 			
 			if (availableVkus.size() == 0) {
-				resp.setUserFlowMsg(CartErrorMessageConstants.ERROR_MSG_PRODUCT_UNAVAILABLE);
+				emap.setErrorMessage((CartErrorMessageConstants.ERROR_MSG_PRODUCT_UNAVAILABLE));
+				emap.setErrorCode(CartErrorMessageConstants.FLOW_CODE_ONE);
 			} else if (availableVkus.size() != addToCartReqVO.getQty()) {
 				
 				StringBuilder sb = new StringBuilder(CartErrorMessageConstants.ERROR_MSG_LESS_QTY_UNAVAILABLE);
 				sb.append(availableVkus.size());
-				resp.setUserFlowMsg(sb.toString());
+				emap.setErrorMessage(sb.toString());
+				emap.setErrorCode(CartErrorMessageConstants.FLOW_CODE_TWO);
 			}
 
 		}

@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import org.springframework.data.annotation.Id;
 
 import com.png.base.BaseConstants;
+import com.png.order.commerce.ItemPriceInfo;
 
 /**
  * @author Manish Arora
@@ -21,6 +22,7 @@ public class Booking implements Comparable<Booking> {
 	private String endDate;
 	private String vkuId;
 	private int status;
+	private ItemPriceInfo itemPriceInfo;
 	
 	
 	/**
@@ -61,6 +63,20 @@ public class Booking implements Comparable<Booking> {
 	}
 	public void setVkuId(String vkuId) {
 		this.vkuId = vkuId;
+	}
+	/**
+	 * @return the itemPriceInfo
+	 */
+	public ItemPriceInfo getItemPriceInfo() {
+		if (null == itemPriceInfo)
+		return new ItemPriceInfo();
+		else return itemPriceInfo;
+	}
+	/**
+	 * @param itemPriceInfo the itemPriceInfo to set
+	 */
+	public void setItemPriceInfo(ItemPriceInfo itemPriceInfo) {
+		this.itemPriceInfo = itemPriceInfo;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)

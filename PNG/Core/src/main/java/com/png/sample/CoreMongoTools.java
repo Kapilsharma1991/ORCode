@@ -15,7 +15,7 @@ public class CoreMongoTools {
 	}
 	
 	public String createProduct(ProductDetail prd) {
-		coreMongoTemplate.insert(prd);
+		coreMongoTemplate.save(prd);
 		return prd.getId();
 	}
 	

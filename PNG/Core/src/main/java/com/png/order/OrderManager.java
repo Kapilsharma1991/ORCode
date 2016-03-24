@@ -4,7 +4,7 @@
 package com.png.order;
 
 import com.png.order.Entity.Order;
-import com.png.reservation.Entity.Booking;
+import com.png.order.pricing.PricingEngine;
 import com.png.session.SessionManager;
 
 /**
@@ -15,6 +15,7 @@ public class OrderManager {
 	
 	private SessionManager sessionManager;
 	private OrderTools orderTools;
+	private PricingEngine pricingEngine;
 	/**
 	 * @return the sessionManager
 	 */
@@ -40,6 +41,18 @@ public class OrderManager {
 		this.orderTools = orderTools;
 	}
 	
+	/**
+	 * @return the pricingEngine
+	 */
+	public PricingEngine getPricingEngine() {
+		return pricingEngine;
+	}
+	/**
+	 * @param pricingEngine the pricingEngine to set
+	 */
+	public void setPricingEngine(PricingEngine pricingEngine) {
+		this.pricingEngine = pricingEngine;
+	}
 	public Order getOrder() {
 		return getSessionManager().getOrder();
 	}
@@ -53,11 +66,11 @@ public class OrderManager {
 		return order.getId();
 		
 	}
+	
 	/**
-	 * @param booking
-	 * @param skuId
+	 * @param order
 	 */
-	public void repriceBooking(Booking booking, String skuId) {
+	public void repriceOrder(Order order) {
 		// TODO Auto-generated method stub
 		
 	}

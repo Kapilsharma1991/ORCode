@@ -43,7 +43,7 @@ public class CatalogTools {
 	 */
 	public void createCatalogItem(Object object) {
 		
-		catMongoTemplate.insert(object);
+		catMongoTemplate.save(object);
 		
 	}
 

@@ -210,10 +210,11 @@ public class ProductActorController extends BaseController {
 		
 		
 		SkuPricePoint pp = new SkuPricePoint();
-		pp.setDailyPrice((float) 500);
-		pp.setMonthlyPrice((float)10000);
-		pp.setQuaterlyPrice((float)25000);
-		pp.setWeeklyPrice((float)3000);
+		pp.setDailyPrice( 500);
+		pp.setMonthlyPrice(10000);
+		pp.setQuaterlyPrice(25000);
+		pp.setWeeklyPrice(3000);
+		pp.setDeposit(3000);
 		
 		
 		Sku sku1 = new Sku();

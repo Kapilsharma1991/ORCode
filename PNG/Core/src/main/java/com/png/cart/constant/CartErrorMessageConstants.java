@@ -11,6 +11,8 @@ public class CartErrorMessageConstants {
 
 	public static final String ERROR_MSG_PRODUCT_UNAVAILABLE = "Oops, It seems we are over booked ! This Product is not available for the selected dates. !";
 	public static final String ERROR_MSG_LESS_QTY_UNAVAILABLE = "Oops, It seems we are over booked ! There is limited quantity available for this item. Available quantity is : ";
+	public static final String FLOW_CODE_ONE = "01";
+	public static final String FLOW_CODE_TWO = "02";
 }
 
 

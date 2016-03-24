@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.png.base.BaseConstants;
 import com.png.reservation.Entity.Booking;
@@ -24,8 +25,8 @@ public class TestBooking {
 	 */
 	public static void main(String[] args) {
 		
-		String uStart = "06-04-2016";
-		String uEnd = "24-04-2016";
+		String uStart = "25-03-2016";
+		String uEnd = "27-03-2016";
 		
 		Booking b1 = new Booking(0);
 		b1.setStartDate("24-03-2016");
@@ -84,6 +85,17 @@ public class TestBooking {
 			
 			System.out.println("avail: "+avail+" for "+ uStart+" to "+uEnd);
 			
+			int num = getDateDiff (USD,UED,TimeUnit.DAYS);
+			
+			System.out.println("no of days: " +num);
+			
+			int bookingDays = 38;
+			int numOfQuaters = bookingDays / 90;
+			int numOfMonths = numOfQuaters > 0 ? ((bookingDays % 90) / 30) : (bookingDays / 30);
+			int numOfWeeks = numOfMonths > 0 ? (((bookingDays % 90) % 30) / 7) : (bookingDays / 7);
+			int numOfDays = numOfWeeks > 0 ? (((bookingDays % 90) % 30) % 7) : (bookingDays);
+			System.out.println("Q "+numOfQuaters+" M "+numOfMonths+" W "+numOfWeeks+" D "+numOfDays);
+			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -91,6 +103,11 @@ public class TestBooking {
 	
 		
 
+	}
+	
+	public static  int getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+	    long diffInMillies = date2.getTime() - date1.getTime();
+	    return (int) timeUnit.convert(diffInMillies,TimeUnit.MILLISECONDS);
 	}
 
 }

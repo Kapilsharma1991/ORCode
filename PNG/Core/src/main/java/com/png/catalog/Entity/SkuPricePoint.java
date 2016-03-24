@@ -7,33 +7,46 @@ package com.png.catalog.Entity;
 
 public class SkuPricePoint {
 	
-	private float dailyPrice;
-	private float weeklyPrice;
-	private float monthlyPrice;
-	private float quaterlyPrice;
+	private double dailyPrice;
+	private double weeklyPrice;
+	private double monthlyPrice;
+	private double quaterlyPrice;
+	private double deposit;
 	
-	public float getDailyPrice() {
+	/**
+	 * @return the deposit
+	 */
+	public double getDeposit() {
+		return deposit;
+	}
+	/**
+	 * @param deposit the deposit to set
+	 */
+	public void setDeposit(double deposit) {
+		this.deposit = deposit;
+	}
+	public double getDailyPrice() {
 		return dailyPrice;
 	}
-	public void setDailyPrice(float dailyPrice) {
+	public void setDailyPrice(double dailyPrice) {
 		this.dailyPrice = dailyPrice;
 	}
-	public float getWeeklyPrice() {
+	public double getWeeklyPrice() {
 		return weeklyPrice;
 	}
-	public void setWeeklyPrice(float weeklyPrice) {
+	public void setWeeklyPrice(double weeklyPrice) {
 		this.weeklyPrice = weeklyPrice;
 	}
-	public float getMonthlyPrice() {
+	public double getMonthlyPrice() {
 		return monthlyPrice;
 	}
-	public void setMonthlyPrice(float monthlyPrice) {
+	public void setMonthlyPrice(double monthlyPrice) {
 		this.monthlyPrice = monthlyPrice;
 	}
-	public float getQuaterlyPrice() {
+	public double getQuaterlyPrice() {
 		return quaterlyPrice;
 	}
-	public void setQuaterlyPrice(float quaterlyPrice) {
+	public void setQuaterlyPrice(double quaterlyPrice) {
 		this.quaterlyPrice = quaterlyPrice;
 	}
 	

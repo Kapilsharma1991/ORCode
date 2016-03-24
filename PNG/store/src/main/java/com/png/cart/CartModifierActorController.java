@@ -89,11 +89,16 @@ public class CartModifierActorController extends BaseController {
 		CartModifierReqVO addToCartReqVO = (CartModifierReqVO) cartTranslator
 				.translateRequest(CartModifierReqVO.class, json);
 		ErrorMap emap = cartValidator.validate(addToCartReqVO);
-		CartModifierRespVO addToCartResVO = cartManager.addItemToCart(addToCartReqVO);
+		if (emap.getErrorCode()!=null) {
+			responseVO.setErrorMap(emap);
+		} else {
+		CartModifierRespVO addToCartResVO = cartManager.addItemToCart(addToCartReqVO, emap);
 		Output output = new Output(addToCartResVO);
-
 		responseVO.setErrorMap(emap);
 		responseVO.setOutput(output);
+		}
+		responseVO.setServiceCode(BaseConstants.SERVICE_SUCCESS_CODE);
+		responseVO.setServiceMessage(BaseConstants.SERVICE_SUCCESS_MSG);
 		return responseVO;
 	}
 

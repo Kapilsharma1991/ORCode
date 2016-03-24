@@ -35,7 +35,7 @@ public class OrderTools {
 	 */
 	public Order updateOrder(Order order) {
 		
-		coreMongoTemplate.insert(order);
+		coreMongoTemplate.save(order);
 		return order;
 	}
 	

@@ -3,7 +3,6 @@
  */
 package com.png.catalog.Entity;
 
-import org.springframework.data.annotation.Id;
 
 /**
  * @author Manish Arora
@@ -11,6 +10,24 @@ import org.springframework.data.annotation.Id;
  */
 public class VkuPricePoint {
 	
+	private double fullRetailPrice;
+	private boolean offerBuyOption;
+	private double offerBuyPrice;
+	private double deposit;
+	
+	
+	/**
+	 * @return the deposit
+	 */
+	public double getDeposit() {
+		return deposit;
+	}
+	/**
+	 * @param deposit the deposit to set
+	 */
+	public void setDeposit(double deposit) {
+		this.deposit = deposit;
+	}
 	public double getFullRetailPrice() {
 		return fullRetailPrice;
 	}
@@ -29,10 +46,6 @@ public class VkuPricePoint {
 	public void setOfferBuyPrice(double offerBuyPrice) {
 		this.offerBuyPrice = offerBuyPrice;
 	}
-
-	private double fullRetailPrice;
-	private boolean offerBuyOption;
-	private double offerBuyPrice;
 
 }
 
