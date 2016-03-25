@@ -11,25 +11,14 @@ import com.png.base.BaseRequestVO;
  */
 public class CartModifierReqVO extends BaseRequestVO {
 
-	private String productId;
+
 	private String skuId;
 
 	private String action;
 	private String bookingStartDate;
 	private String bookingEndDate;
 	private int qty;
-	/**
-	 * @return the productId
-	 */
-	public String getProductId() {
-		return productId;
-	}
-	/**
-	 * @param productId the productId to set
-	 */
-	public void setProductId(String productId) {
-		this.productId = productId;
-	}
+
 	/**
 	 * @return the skuId
 	 */

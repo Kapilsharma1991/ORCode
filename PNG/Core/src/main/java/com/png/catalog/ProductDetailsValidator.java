@@ -24,7 +24,7 @@ public class ProductDetailsValidator extends BaseValidator {
 		PDPReqVO vo = (PDPReqVO) reqVO;
 		if (vo.getProductId() == null) {
 			emap.setErrorMessage(CatalogErrorMsgConstants.MISSING_PRODUCT_ID);
-			emap.setErrorCode(BaseConstants.ERROR_CODE_ONE);
+			emap.setErrorCode(BaseConstants.ERROR_CODE_TWENTY_ONE);
 		}
 		return emap;
 	}

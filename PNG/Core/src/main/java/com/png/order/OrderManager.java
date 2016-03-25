@@ -3,8 +3,12 @@
  */
 package com.png.order;
 
+import java.util.List;
+
 import com.png.order.Entity.Order;
+import com.png.order.pricing.OrderPriceInfo;
 import com.png.order.pricing.PricingEngine;
+import com.png.reservation.Entity.Booking;
 import com.png.session.SessionManager;
 
 /**
@@ -73,6 +77,16 @@ public class OrderManager {
 	public void repriceOrder(Order order) {
 		// TODO Auto-generated method stub
 		
+	}
+	/**
+	 * @param bookings
+	 * @return
+	 */
+	public OrderPriceInfo repriceOrder(List<Booking> bookings) {
+		
+		OrderPriceInfo priceInfo = getOrder().getOrderPriceInfo();
+		getPricingEngine().repriceOrder(bookings,priceInfo);
+		return priceInfo;
 	}
 	
 

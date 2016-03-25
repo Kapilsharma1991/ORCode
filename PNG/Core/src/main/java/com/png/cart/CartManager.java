@@ -115,9 +115,9 @@ public class CartManager extends BaseManager {
 						booking.getId());
 				bookings.add(booking);
 			}
-			
+		
 			order.setBookings(bookings);
-			orderManager.repriceOrder(order);
+			order.setOrderPriceInfo(orderManager.repriceOrder(bookings));	
 			resp.setOrderId(orderManager.updateOrder(order));
 			
 

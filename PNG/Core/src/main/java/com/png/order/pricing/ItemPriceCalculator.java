@@ -12,7 +12,6 @@ import com.png.base.BaseConstants;
 import com.png.catalog.CatalogTools;
 import com.png.catalog.Entity.Sku;
 import com.png.order.commerce.ItemPriceInfo;
-import com.png.reservation.Entity.Booking;
 
 /**
  * @author Manish Arora
