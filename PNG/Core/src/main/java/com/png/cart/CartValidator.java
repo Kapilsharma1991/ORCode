@@ -10,9 +10,9 @@ import com.png.base.BaseConstants;
 import com.png.base.BaseRequestVO;
 import com.png.base.BaseValidator;
 import com.png.base.ErrorMap;
+import com.png.cart.constant.CartConstants;
 import com.png.cart.vo.CartModifierReqVO;
 import com.png.catalog.constant.CatalogErrorMsgConstants;
-import com.png.reservation.constant.ReservationConstants;
 import com.png.reservation.constant.ReservationErrorConstant;
 
 /**
@@ -28,6 +28,8 @@ public class CartValidator extends BaseValidator {
 	public ErrorMap validate(BaseRequestVO reqVO) {
 		
 		ErrorMap emap = super.validate(reqVO);
+		
+		if (reqVO.getClass().getName().equalsIgnoreCase(CartConstants.CLASS_CART_MODIFIER_REQ_VO)) {
 		
 		CartModifierReqVO vo = (CartModifierReqVO) reqVO;
 		
@@ -48,6 +50,9 @@ public class CartValidator extends BaseValidator {
 			e.printStackTrace();
 		}
 	 
+		} else if (reqVO.getClass().getName().equalsIgnoreCase(CartConstants.CLASS_CART_DETAILS_REQ_VO)) {
+			
+		}
 	 
 		return emap;
 	}

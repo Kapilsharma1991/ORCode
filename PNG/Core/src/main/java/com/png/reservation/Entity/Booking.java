@@ -22,6 +22,19 @@ public class Booking implements Comparable<Booking> {
 	private String endDate;
 	private String vkuId;
 	private int status;
+	private String skuId;
+	/**
+	 * @return the skuId
+	 */
+	public String getSkuId() {
+		return skuId;
+	}
+	/**
+	 * @param skuId the skuId to set
+	 */
+	public void setSkuId(String skuId) {
+		this.skuId = skuId;
+	}
 	private ItemPriceInfo itemPriceInfo;
 	
 	

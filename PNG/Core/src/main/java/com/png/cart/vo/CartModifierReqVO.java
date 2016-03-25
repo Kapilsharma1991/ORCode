@@ -14,7 +14,6 @@ public class CartModifierReqVO extends BaseRequestVO {
 
 	private String skuId;
 
-	private String action;
 	private String bookingStartDate;
 	private String bookingEndDate;
 	private int qty;
@@ -32,19 +31,7 @@ public class CartModifierReqVO extends BaseRequestVO {
 		this.skuId = skuId;
 	}
 
-	/**
-	 * @return the action
-	 */
-	public String getAction() {
-		return action;
-	}
-	/**
-	 * @param action the action to set
-	 */
-	public void setAction(String action) {
-		this.action = action;
-
-	}
+	
 	/**
 	 * @return the bookingStartDate
 	 */

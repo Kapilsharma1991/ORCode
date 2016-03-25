@@ -88,6 +88,15 @@ public class OrderManager {
 		getPricingEngine().repriceOrder(bookings,priceInfo);
 		return priceInfo;
 	}
+	/**
+	 * @param orderId
+	 * @return 
+	 */
+	public Order getOrder(String orderId) {
+		
+		return orderTools.getOrder(orderId);
+		
+	}
 	
 
 }

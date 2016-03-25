@@ -13,6 +13,8 @@ import com.png.base.BaseController;
 import com.png.base.ErrorMap;
 import com.png.base.Output;
 import com.png.base.ResponseVO;
+import com.png.cart.vo.CartDetailsReqVO;
+import com.png.cart.vo.CartDetailsRespVO;
 import com.png.cart.vo.CartModifierReqVO;
 import com.png.cart.vo.CartModifierRespVO;
 
@@ -80,8 +82,6 @@ public class CartModifierActorController extends BaseController {
 	public ResponseVO addToCart(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		// initialSetup();
-
 		ResponseVO responseVO = new ResponseVO();
 
 		String json = getJSON(request);
@@ -101,5 +101,33 @@ public class CartModifierActorController extends BaseController {
 		responseVO.setServiceMessage(BaseConstants.SERVICE_SUCCESS_MSG);
 		return responseVO;
 	}
+	
+	
+	@RequestMapping(value = "/getCart/", method = RequestMethod.GET)
+	public ResponseVO getCartDetails(HttpServletRequest request,
+			HttpServletResponse response) {
+		
+		ResponseVO responseVO = new ResponseVO();
+		String json = getJSON(request);
+		
+		CartDetailsReqVO cartReqVO = (CartDetailsReqVO) cartTranslator
+				.translateRequest(CartDetailsReqVO.class, json);
+		ErrorMap emap = cartValidator.validate(cartReqVO);
+		if (emap.getErrorCode()!=null) {
+			responseVO.setErrorMap(emap);
+		} else {
+		CartDetailsRespVO cartRespVO = cartManager.getCartDetails(cartReqVO, emap);
+		Output output = new Output(cartRespVO);
+		responseVO.setErrorMap(emap);
+		responseVO.setOutput(output);
+		}
+		responseVO.setServiceCode(BaseConstants.SERVICE_SUCCESS_CODE);
+		responseVO.setServiceMessage(BaseConstants.SERVICE_SUCCESS_MSG);
+		return responseVO;
+	}
+		
+		
+		
+	}
+	
 
-}

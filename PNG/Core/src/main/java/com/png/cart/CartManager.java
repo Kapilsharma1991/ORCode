@@ -3,14 +3,18 @@
  */
 package com.png.cart;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.png.base.BaseManager;
 import com.png.base.ErrorMap;
 import com.png.cart.constant.CartErrorMessageConstants;
+import com.png.cart.vo.CartDetailsReqVO;
+import com.png.cart.vo.CartDetailsRespVO;
 import com.png.cart.vo.CartModifierReqVO;
 import com.png.cart.vo.CartModifierRespVO;
 import com.png.catalog.CatalogTools;
+import com.png.catalog.Entity.Sku;
 import com.png.order.OrderManager;
 import com.png.order.Entity.Order;
 import com.png.reservation.ReservationEngine;
@@ -136,6 +140,44 @@ public class CartManager extends BaseManager {
 
 		}
 
+		return resp;
+	}
+
+	/**
+	 * @param cartReqVO
+	 * @param emap
+	 * @return
+	 */
+	public CartDetailsRespVO getCartDetails(CartDetailsReqVO reqVO,
+			ErrorMap emap) {
+		
+		CartDetailsRespVO resp = new CartDetailsRespVO();
+		Order order = null;
+		
+		if (reqVO.getOrderId() !=null) {
+			order = orderManager.getOrder(reqVO.getOrderId());
+		} else {
+			order = orderManager.getOrder();
+		}
+		
+		List<SkuSummary> skuSummaryList = new ArrayList<SkuSummary>();
+		
+		for (Booking booking : order.getBookings())
+		{
+			SkuSummary summ = new SkuSummary();
+			summ.setSkuId(booking.getSkuId());
+			Sku sku = getCatalogTools().getSku(booking.getSkuId());
+			summ.setName(sku.getName());
+			summ.setMedImg(sku.getSkuImage().get(0).getMedIMage());
+			summ.setSmallImg(sku.getSkuImage().get(0).getSmallImage());
+			skuSummaryList.add(summ);	
+			
+		}
+		
+		resp.setBookings(order.getBookings());
+		resp.setSkuSummaryList(skuSummaryList);
+		resp.setOrderPriceInfo(order.getOrderPriceInfo());
+		
 		return resp;
 	}
 

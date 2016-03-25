@@ -38,6 +38,15 @@ public class OrderTools {
 		coreMongoTemplate.save(order);
 		return order;
 	}
+
+	/**
+	 * @param orderId
+	 * @return 
+	 */
+	public Order getOrder(String orderId) {
+		return getCoreMongoTemplate().findById(orderId, Order.class);
+		
+	}
 	
 
 }

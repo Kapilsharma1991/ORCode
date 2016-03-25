@@ -184,6 +184,7 @@ public class ReservationEngine {
 
 		Booking booking = new Booking(ReservationConstants.BOOKING_STATUS_OPEN);
 		booking.setVkuId(vkuId);
+		booking.setSkuId(skuId);
 		booking.setStartDate(bookingStartDate);
 		booking.setEndDate(bookingEndDate);
 		booking.setItemPriceInfo(getPricingEngine().repriceBooking(bookingStartDate,bookingEndDate , skuId));
