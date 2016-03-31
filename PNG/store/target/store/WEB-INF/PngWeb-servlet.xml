@@ -25,13 +25,32 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<!-- *****************PDP Components start here***************** -->
 
-	<bean id="productActorController" class="com.png.catalog.ProductActorController">
+	<!-- *****************Catalog Components start here***************** -->
+
+	<bean id="catalogActorController" class="com.png.catalog.CatalogActorController">
 		<property name="pdpManager" ref="pdpManager"></property>
 		<property name="pdpTranslator" ref="pdpTranslator"></property>
 		<property name="pdpValidator" ref="pdpValidator"></property>
+		<property name="catalogManager" ref="catalogManager"></property>
 	</bean>
+
+
+	<bean id="catalogManager" class="com.png.catalog.CatalogManager">
+		<property name="catalogTools" ref="catalogTools">
+		</property>
+	</bean>
+
+	<!-- *****************Catalog Components ends here***************** -->
+
+
+
+
+
+
+
+	<!-- *****************PDP Components start here***************** -->
+
 
 	<bean id="pdpManager" class="com.png.catalog.ProductDetailsManager">
 		<property name="catalogTools" ref="catalogTools">
@@ -86,7 +105,7 @@
 		<property name="orderTools" ref="orderTools"></property>
 		<property name="sessionManager" ref="sessionManager"></property>
 		<property name="pricingEngine" ref="pricingEngine"></property>
-		
+
 	</bean>
 
 	<bean id="orderTools" class="com.png.order.OrderTools">
@@ -105,9 +124,9 @@
 	</bean>
 
 	<bean id="itemPriceCalculator" class="com.png.order.pricing.ItemPriceCalculator">
-	<property name="catalogTools" ref="catalogTools"></property>
+		<property name="catalogTools" ref="catalogTools"></property>
 	</bean>
-	
+
 	<bean id="orderPriceCalculator" class="com.png.order.pricing.OrderPriceCalculator"></bean>
 
 	<!-- *****************Pricing Modifier Components ends here***************** -->

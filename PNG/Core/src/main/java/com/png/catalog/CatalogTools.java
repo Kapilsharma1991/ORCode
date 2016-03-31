@@ -10,6 +10,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
+import com.png.catalog.Entity.Catalog;
+import com.png.catalog.Entity.Category;
 import com.png.catalog.Entity.Product;
 import com.png.catalog.Entity.Sku;
 import com.png.catalog.Entity.Vku;
@@ -102,6 +104,26 @@ public class CatalogTools {
 		
 		Query query = new Query(Criteria.where("vkuId").is(vkuId));	
 		return catMongoTemplate.find(query, Vku.class).get(0);
+	}
+
+	/**
+	 * @param orCatalogId
+	 * @return
+	 */
+	public Catalog getCatalog(String catalogId) {
+		
+		Query query = new Query(Criteria.where("catalogId").is(catalogId));	
+		return catMongoTemplate.find(query, Catalog.class).get(0);
+		
+	}
+
+	/**
+	 * @return
+	 */
+	public Category getCategory(String catId) {
+		
+		Query query = new Query(Criteria.where("categoryId").is(catId));
+		return catMongoTemplate.find(query, Category.class).size() > 0 ? catMongoTemplate.find(query, Category.class).get(0) : null;
 	}
 
 }
