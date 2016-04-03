@@ -13,6 +13,7 @@ import com.png.base.BaseController;
 import com.png.base.ErrorMap;
 import com.png.base.Output;
 import com.png.base.ResponseVO;
+import com.png.cart.constant.CartConstants;
 import com.png.cart.vo.CartDetailsReqVO;
 import com.png.cart.vo.CartDetailsRespVO;
 import com.png.cart.vo.CartModifierReqVO;
@@ -88,7 +89,7 @@ public class CartModifierActorController extends BaseController {
 
 		CartModifierReqVO addToCartReqVO = (CartModifierReqVO) cartTranslator
 				.translateRequest(CartModifierReqVO.class, json);
-		ErrorMap emap = cartValidator.validate(addToCartReqVO);
+		ErrorMap emap = cartValidator.validate(addToCartReqVO, CartConstants.ACTION_ADD_TO_CART);
 		if (emap.getErrorCode()!=null) {
 			responseVO.setErrorMap(emap);
 		} else {

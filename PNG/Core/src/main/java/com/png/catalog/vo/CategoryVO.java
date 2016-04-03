@@ -17,7 +17,6 @@ public class CategoryVO {
 	private boolean isRoot;
 	private boolean hasChildCat;
 	private boolean hasChildProducts;
-
 	
 	/**
 	 * @return the hasChildProducts

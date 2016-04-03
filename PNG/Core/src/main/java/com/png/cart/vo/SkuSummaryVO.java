@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.png.cart;
+package com.png.cart.vo;
 
 /**
  * @author Manish Arora
  *
  */
-public class SkuSummary {
+public class SkuSummaryVO {
 	
 	private String skuId;
 	private String name;

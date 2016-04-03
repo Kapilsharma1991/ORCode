@@ -167,6 +167,52 @@
 
 
 
+	<!-- *****************User Profile Components start here***************** -->
+
+	<bean id="accountActorController" class="com.png.myacc.AccountActorController">
+		<property name="userProfileManager" ref="userProfileManager"></property>
+		<property name="userProfileTranslator" ref="userProfileTranslator"></property>
+		<property name="userProfileValidator" ref="userProfileValidator"></property>
+	</bean>
+
+	<bean id="userProfileManager" class="com.png.myacc.UserProfileManager">
+		<property name="profileTools" ref="profileTools"></property>
+	</bean>
+
+	<bean id="userProfileTranslator" class="com.png.myacc.UserProfileTranslator"></bean>
+
+	<bean id="userProfileValidator" class="com.png.myacc.UserProfileValidator">
+		<property name="addressValidator" ref="addressValidator"></property>
+	</bean>
+
+
+	<bean id="profileTools" class="com.png.myacc.ProfileTools">
+		<property name="coreMongoTemplate" ref="coreMongoTemplate">
+		</property>
+	</bean>
+
+	<!-- *****************User Profile Components ends here***************** -->
+
+
+
+
+
+
+
+	<!-- *****************Common Components start here***************** -->
+
+	<bean id="addressValidator" class="com.png.common.validator.AddressValidator">
+	</bean>
+
+
+
+	<!-- *****************Common Components ends here***************** -->
+
+
+
+
+
+
 	<!-- *****************Mongo Components Starts here***************** -->
 
 	<mongo:mongo host="localhost" port="27017" />

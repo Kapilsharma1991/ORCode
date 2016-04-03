@@ -64,7 +64,7 @@ public class CatalogActorController extends BaseController {
 	public ResponseVO getPDPContent(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		initialSetup();
+		//initialSetup();
 		
 		ResponseVO responseVO = new ResponseVO();
 

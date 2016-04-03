@@ -13,6 +13,7 @@ import com.png.cart.vo.CartDetailsReqVO;
 import com.png.cart.vo.CartDetailsRespVO;
 import com.png.cart.vo.CartModifierReqVO;
 import com.png.cart.vo.CartModifierRespVO;
+import com.png.cart.vo.SkuSummaryVO;
 import com.png.catalog.CatalogTools;
 import com.png.catalog.Entity.Sku;
 import com.png.order.OrderManager;
@@ -160,11 +161,11 @@ public class CartManager extends BaseManager {
 			order = orderManager.getOrder();
 		}
 		
-		List<SkuSummary> skuSummaryList = new ArrayList<SkuSummary>();
+		List<SkuSummaryVO> skuSummaryList = new ArrayList<SkuSummaryVO>();
 		
 		for (Booking booking : order.getBookings())
 		{
-			SkuSummary summ = new SkuSummary();
+			SkuSummaryVO summ = new SkuSummaryVO();
 			summ.setSkuId(booking.getSkuId());
 			Sku sku = getCatalogTools().getSku(booking.getSkuId());
 			summ.setName(sku.getName());

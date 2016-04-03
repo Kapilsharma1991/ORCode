@@ -10,6 +10,8 @@ import com.png.cart.vo.CartDetailsReqVO;
 import com.png.cart.vo.CartModifierReqVO;
 import com.png.catalog.constant.CatalogConstants;
 import com.png.catalog.vo.PDPReqVO;
+import com.png.myacc.constant.UserProfileConstants;
+import com.png.myacc.vo.UserProfileReqVO;
 
 /**
  * @author Manish Arora
@@ -38,6 +40,10 @@ public class BaseTranslator {
 					CartConstants.CLASS_CART_DETAILS_REQ_VO)) {
 
 				obj = mapper.readValue(jsonData, CartDetailsReqVO.class);
+			} else if (theClass.getName().equalsIgnoreCase(
+					UserProfileConstants.CLASS_USER_PROFILE_REQ_VO)) {
+
+				obj = mapper.readValue(jsonData, UserProfileReqVO.class);
 			}
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block

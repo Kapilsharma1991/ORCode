@@ -39,6 +39,7 @@ public class ProductDetailsManager extends BaseManager {
 		if (null == prod) {
 			emap.setErrorCode(BaseConstants.ERROR_CODE_TWENTY_ONE);
 			emap.setErrorMessage(CatalogErrorMsgConstants.NO_PRODUCT_FOUND);
+			return pdpResVO;
 		}
 		List<Sku> skus = catalogTools.getSkus(prod.getSkus());
         pdpResVO.setProduct(prod);
