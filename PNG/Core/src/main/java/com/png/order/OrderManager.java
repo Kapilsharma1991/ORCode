@@ -84,7 +84,7 @@ public class OrderManager {
 	 */
 	public OrderPriceInfo repriceOrder(List<Booking> bookings) {
 		
-		OrderPriceInfo priceInfo = getOrder().getOrderPriceInfo();
+		OrderPriceInfo priceInfo = new OrderPriceInfo();
 		getPricingEngine().repriceOrder(bookings,priceInfo);
 		return priceInfo;
 	}
