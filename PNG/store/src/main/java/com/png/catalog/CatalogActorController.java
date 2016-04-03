@@ -64,8 +64,7 @@ public class CatalogActorController extends BaseController {
 	public ResponseVO getPDPContent(HttpServletRequest request,
 			HttpServletResponse response) {
 
-		//initialSetup();
-		
+				
 		ResponseVO responseVO = new ResponseVO();
 
 		String json = getJSON(request);
@@ -102,6 +101,16 @@ public class CatalogActorController extends BaseController {
 		responseVO.setServiceCode(BaseConstants.SERVICE_SUCCESS_CODE);
 		responseVO.setServiceMessage(BaseConstants.SERVICE_SUCCESS_MSG);
 		return responseVO;
+	}
+	
+	
+	@RequestMapping(value = "/initCatalog/", method = RequestMethod.GET)
+	public void initCatalog(HttpServletRequest request,
+			HttpServletResponse response) {
+
+		initialSetup();
+		
+		
 	}
 
 	/**
@@ -239,12 +248,16 @@ public class CatalogActorController extends BaseController {
 		vkus.add("vku0001");
 		
 		List<SkuImage> sil1 = new ArrayList<SkuImage>();
+		
+		List<String> siIds = new ArrayList<String>();
 		SkuImage si1 = new SkuImage();
 		si1.setLargeImage("/docs/images/catalog/sku/Large_S1.jpg");
 		si1.setMedIMage("/docs/images/catalog/sku/Med_S1.jpg");
 		si1.setSmallImage("/docs/images/catalog/sku/Small_S1.jpg");
 		si1.setThumbnailImage("/docs/images/catalog/sku/Thumb_S1.jpg");
 		sil1.add(si1);
+		
+		siIds.add(pdpManager.createSkuImage(si1));
 		
 		
 		SkuPricePoint pp = new SkuPricePoint();
@@ -254,15 +267,22 @@ public class CatalogActorController extends BaseController {
 		pp.setWeeklyPrice(3000);
 		pp.setDeposit(3000);
 		
+		String pricePointId = pdpManager.createPricePoint(pp);
+		
+		
 		
 		Sku sku1 = new Sku();
 		sku1.setName("Sony PlayStation 4 (PS4) 500 GB(Black)");
 		sku1.setDescription("A single-chip custom processor ensures that your games run without a glitch while the 8 core Jaguar low power x86-64 AMD CPU allows for a smooth flow. ");
 		sku1.setParentProductId("prd0001");
 		sku1.setSkuId("sku0001");	
+		sku1.setSkuImageIds(siIds);
 		sku1.setSkuImage(sil1);
 		sku1.setSkuPricePoint(pp);
 		sku1.setVkus(vkus);  
+		sku1.setSkuPricePointId(pricePointId);
+		
+
 		
 		pdpManager.createCatalogItem(sku1);
 

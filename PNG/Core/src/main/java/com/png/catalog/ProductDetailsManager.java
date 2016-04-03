@@ -7,6 +7,8 @@ import com.png.base.BaseManager;
 import com.png.base.ErrorMap;
 import com.png.catalog.Entity.Product;
 import com.png.catalog.Entity.Sku;
+import com.png.catalog.Entity.SkuImage;
+import com.png.catalog.Entity.SkuPricePoint;
 import com.png.catalog.constant.CatalogErrorMsgConstants;
 import com.png.catalog.vo.PDPRespVO;
 
@@ -55,6 +57,26 @@ public class ProductDetailsManager extends BaseManager {
 		
 		catalogTools.createCatalogItem(object);
 		
+	}
+
+	/**
+	 * @param si1
+	 * @param b
+	 * @return
+	 */
+	public String createSkuImage(SkuImage object) {
+		
+		catalogTools.createCatalogItem(object);
+		return object.getId();
+	}
+
+	/**
+	 * @param pp
+	 * @return
+	 */
+	public String createPricePoint(SkuPricePoint object) {
+		catalogTools.createCatalogItem(object);
+		return object.getId();
 	}
 
 }

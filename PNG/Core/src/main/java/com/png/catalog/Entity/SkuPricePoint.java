@@ -1,11 +1,16 @@
 package com.png.catalog.Entity;
 
+import org.springframework.data.annotation.Id;
+
 /**
  * @author Manish Arora
  *
  */
 
 public class SkuPricePoint {
+	
+	@Id
+	private String id;
 	
 	private double dailyPrice;
 	private double weeklyPrice;
@@ -49,6 +54,13 @@ public class SkuPricePoint {
 	public void setQuaterlyPrice(double quaterlyPrice) {
 		this.quaterlyPrice = quaterlyPrice;
 	}
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
+	
 	
 
 }

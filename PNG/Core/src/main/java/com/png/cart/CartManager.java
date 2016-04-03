@@ -171,6 +171,10 @@ public class CartManager extends BaseManager {
 			summ.setName(sku.getName());
 			summ.setMedImg(sku.getSkuImage().get(0).getMedIMage());
 			summ.setSmallImg(sku.getSkuImage().get(0).getSmallImage());
+			
+		/*	SkuImage skuImage = getCatalogTools().getSkuImage(sku.getSkuImageIds());
+			summ.setMedImg(skuImage.getMedIMage());
+			summ.setSmallImg(skuImage.getSmallImage());*/
 			skuSummaryList.add(summ);	
 			
 		}

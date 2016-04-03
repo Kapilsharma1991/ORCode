@@ -14,6 +14,7 @@ import com.png.catalog.Entity.Catalog;
 import com.png.catalog.Entity.Category;
 import com.png.catalog.Entity.Product;
 import com.png.catalog.Entity.Sku;
+import com.png.catalog.Entity.SkuImage;
 import com.png.catalog.Entity.Vku;
 
 /**
@@ -124,6 +125,20 @@ public class CatalogTools {
 		
 		Query query = new Query(Criteria.where("categoryId").is(catId));
 		return catMongoTemplate.find(query, Category.class).size() > 0 ? catMongoTemplate.find(query, Category.class).get(0) : null;
+	}
+
+	/**
+	 * @param skuImages
+	 * @return
+	 */
+	public SkuImage getSkuImage(List<String> skuImages) {
+		
+		SkuImage skuImage = new SkuImage();
+		if (skuImages != null && skuImages.size() > 0) {
+			skuImage = catMongoTemplate.findById(skuImages.get(0), SkuImage.class);
+		}
+		
+		return skuImage;
 	}
 
 }

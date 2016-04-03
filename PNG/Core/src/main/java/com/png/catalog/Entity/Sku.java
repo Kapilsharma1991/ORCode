@@ -20,8 +20,10 @@ public class Sku {
 	private String name;
 	private String description;
 	private List<SkuImage> skuImage;
+	private List<String> skuImageIds;
 	private String parentProductId;
 	private SkuPricePoint skuPricePoint;
+	private String skuPricePointId;
 	private List<String> vkus;
 	
 	public String getSkuId() {
@@ -47,6 +49,7 @@ public class Sku {
 	}
 	public void setSkuImage(List<SkuImage> skuImage) {
 		this.skuImage = skuImage;
+		
 	}
 	public String getParentProductId() {
 		return parentProductId;
@@ -69,4 +72,30 @@ public class Sku {
 	public String getId() {
 		return id;
 	}
+	/**
+	 * @return the skuImageIds
+	 */
+	public List<String> getSkuImageIds() {
+		return skuImageIds;
+	}
+	/**
+	 * @param skuImageIds the skuImageIds to set
+	 */
+	public void setSkuImageIds(List<String> skuImageIds) {
+		this.skuImageIds = skuImageIds;
+	}
+	/**
+	 * @return the skuPricePointId
+	 */
+	public String getSkuPricePointId() {
+		return skuPricePointId;
+	}
+	/**
+	 * @param skuPricePointId the skuPricePointId to set
+	 */
+	public void setSkuPricePointId(String skuPricePointId) {
+		this.skuPricePointId = skuPricePointId;
+	}
+	
+	
 }
