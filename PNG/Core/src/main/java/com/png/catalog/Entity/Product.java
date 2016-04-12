@@ -21,6 +21,17 @@ public class Product {
 	
 	private String brand;
 	private List<String> whatsIncluded;
+	private String productId;
+	private String name;
+	private String description;
+	private ProductImage productImage;
+	private String imageId;
+	private String parentCategoryId;
+	private List<String> skus;
+	private double aggregateRating;
+	private int numOfReviews;
+	private List<String> recommendedProducts;
+	
 	public String getBrand() {
 		return brand;
 	}
@@ -33,17 +44,6 @@ public class Product {
 	public void setWhatsIncluded(List<String> whatsIncluded) {
 		this.whatsIncluded = whatsIncluded;
 	}
-	private String productId;
-	
-	private String name;
-	private String description;
-
-	private List<ProductImage> productImage;
-	private String parentCategoryId;
-	private List<String> skus;
-	private double aggregateRating;
-	private int numOfReviews;
-	private List<String> recommendedProducts;
 	
 	public String getProductId() {
 		return productId;
@@ -79,10 +79,17 @@ public class Product {
 	public String getId() {
 		return id;
 	}
-	public List<ProductImage> getProductImage() {
+
+	/**
+	 * @return the productImage
+	 */
+	public ProductImage getProductImage() {
 		return productImage;
 	}
-	public void setProductImage(List<ProductImage> productImage) {
+	/**
+	 * @param productImage the productImage to set
+	 */
+	public void setProductImage(ProductImage productImage) {
 		this.productImage = productImage;
 	}
 	public List<String> getRecommendedProducts() {
@@ -102,5 +109,17 @@ public class Product {
 	}
 	public void setNumOfReviews(int numOfReviews) {
 		this.numOfReviews = numOfReviews;
+	}
+	/**
+	 * @return the imageId
+	 */
+	public String getImageId() {
+		return imageId;
+	}
+	/**
+	 * @param imageId the imageId to set
+	 */
+	public void setImageId(String imageId) {
+		this.imageId = imageId;
 	}
 }

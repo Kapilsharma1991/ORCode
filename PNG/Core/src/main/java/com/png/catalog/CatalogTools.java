@@ -13,8 +13,10 @@ import org.springframework.data.mongodb.core.query.Query;
 import com.png.catalog.Entity.Catalog;
 import com.png.catalog.Entity.Category;
 import com.png.catalog.Entity.Product;
+import com.png.catalog.Entity.ProductImage;
 import com.png.catalog.Entity.Sku;
 import com.png.catalog.Entity.SkuImage;
+import com.png.catalog.Entity.SkuPricePoint;
 import com.png.catalog.Entity.Vku;
 
 /**
@@ -85,7 +87,9 @@ public class CatalogTools {
 	public void updateVkuWithBookingId(String availableVku, String bookingId) {
 		
 		Vku vku = getVku(availableVku);
-		vku.setBookings(vku.getBookings().add(bookingId) ? vku.getBookings():vku.getBookings());
+		List<String> bookings = new ArrayList<String>();
+		bookings.add(bookingId);
+		vku.setBookings(bookings);
 		updateVku(vku);
 	}
 
@@ -127,10 +131,10 @@ public class CatalogTools {
 		return catMongoTemplate.find(query, Category.class).size() > 0 ? catMongoTemplate.find(query, Category.class).get(0) : null;
 	}
 
-	/**
+/*	*//**
 	 * @param skuImages
 	 * @return
-	 */
+	 *//*
 	public SkuImage getSkuImage(List<String> skuImages) {
 		
 		SkuImage skuImage = new SkuImage();
@@ -139,6 +143,31 @@ public class CatalogTools {
 		}
 		
 		return skuImage;
+	}*/
+
+	/**
+	 * @param imageId
+	 * @return
+	 */
+	public ProductImage getProductImage(String imageId) {
+		
+		return catMongoTemplate.findById(imageId, ProductImage.class);
+	}
+
+	/**
+	 * @param imageId
+	 * @return
+	 */
+	public SkuImage getSkuImage(String imageId) {
+		return catMongoTemplate.findById(imageId, SkuImage.class);
+	}
+
+	/**
+	 * @param skuPricePointId
+	 * @return
+	 */
+	public SkuPricePoint getSkuPricePoint(String skuPricePointId) {
+		return catMongoTemplate.findById(skuPricePointId, SkuPricePoint.class);
 	}
 
 }

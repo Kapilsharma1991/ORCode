@@ -16,6 +16,7 @@ import com.png.cart.vo.CartModifierRespVO;
 import com.png.cart.vo.SkuSummaryVO;
 import com.png.catalog.CatalogTools;
 import com.png.catalog.Entity.Sku;
+import com.png.catalog.Entity.SkuImage;
 import com.png.order.OrderManager;
 import com.png.order.Entity.Order;
 import com.png.reservation.ReservationEngine;
@@ -168,9 +169,11 @@ public class CartManager extends BaseManager {
 			SkuSummaryVO summ = new SkuSummaryVO();
 			summ.setSkuId(booking.getSkuId());
 			Sku sku = getCatalogTools().getSku(booking.getSkuId());
+			SkuImage image = new SkuImage();
+			image = getCatalogTools().getSkuImage(sku.getSkuImageIds().get(0));
 			summ.setName(sku.getName());
-			summ.setMedImg(sku.getSkuImage().get(0).getMedIMage());
-			summ.setSmallImg(sku.getSkuImage().get(0).getSmallImage());
+			summ.setMedImg(image.getMedIMage());
+			summ.setSmallImg(image.getSmallImage());
 			
 		/*	SkuImage skuImage = getCatalogTools().getSkuImage(sku.getSkuImageIds());
 			summ.setMedImg(skuImage.getMedIMage());

@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import com.png.base.BaseConstants;
 import com.png.catalog.CatalogTools;
 import com.png.catalog.Entity.Sku;
+import com.png.catalog.Entity.SkuPricePoint;
 import com.png.order.commerce.ItemPriceInfo;
 
 /**
@@ -39,32 +40,33 @@ public class ItemPriceCalculator implements PriceCalculator {
 	/**
 	 * @param booking
 	 * @param skuId
-	 * @return 
+	 * @return
 	 */
-	public ItemPriceInfo repriceBooking(String startDate, String endDate, String skuId) {
+	public ItemPriceInfo repriceBooking(String startDate, String endDate,
+			String skuId) {
 
 		int bookingDays = 0;
 		SimpleDateFormat df = new SimpleDateFormat(BaseConstants.DATE_FORMAT);
 		try {
-			bookingDays = getDateDiff(df.parse(endDate),
-					df.parse(startDate), TimeUnit.DAYS);
+			bookingDays = getDateDiff(df.parse(endDate), df.parse(startDate),
+					TimeUnit.DAYS);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		Sku sku = getCatalogTools().getSku(skuId);
-		double dailyPrice = sku.getSkuPricePoint().getDailyPrice();
-		double weeklyPrice = sku.getSkuPricePoint().getWeeklyPrice();
-		double monthlyPrice = sku.getSkuPricePoint().getMonthlyPrice();
-		double quaterlyPrice = sku.getSkuPricePoint().getQuaterlyPrice();
+		SkuPricePoint pricePoint = getCatalogTools().getSkuPricePoint(
+				sku.getSkuPricePointId());
+		double dailyPrice = pricePoint.getDailyPrice();
+		double weeklyPrice = pricePoint.getWeeklyPrice();
+		double monthlyPrice = pricePoint.getMonthlyPrice();
+		double quaterlyPrice = pricePoint.getQuaterlyPrice();
 		double itemPrice = getPrice(bookingDays, dailyPrice, weeklyPrice,
 				monthlyPrice, quaterlyPrice);
 		ItemPriceInfo priceInfo = new ItemPriceInfo();
 		priceInfo.setOriginalPrice(itemPrice);
-		priceInfo.setDeposit(
-				catalogTools.getSku(skuId).getSkuPricePoint()
-						.getDeposit());
+		priceInfo.setDeposit(pricePoint.getDeposit());
 		return priceInfo;
 
 	}

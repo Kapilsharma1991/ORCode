@@ -54,6 +54,11 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.2.5.RELEASE</version>
-		</dependency>
+		</dependency>	
+		<dependency>
+    <groupId>com.sparkpost</groupId>
+    <artifactId>sparkpost-lib</artifactId>
+    <version>0.15</version>
+</dependency>
 	</dependencies>
 </project>

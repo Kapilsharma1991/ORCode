@@ -247,7 +247,7 @@ public class CatalogActorController extends BaseController {
 		List<String> vkus = new ArrayList<String>();
 		vkus.add("vku0001");
 		
-		List<SkuImage> sil1 = new ArrayList<SkuImage>();
+		//List<SkuImage> sil1 = new ArrayList<SkuImage>();
 		
 		List<String> siIds = new ArrayList<String>();
 		SkuImage si1 = new SkuImage();
@@ -255,9 +255,9 @@ public class CatalogActorController extends BaseController {
 		si1.setMedIMage("/docs/images/catalog/sku/Med_S1.jpg");
 		si1.setSmallImage("/docs/images/catalog/sku/Small_S1.jpg");
 		si1.setThumbnailImage("/docs/images/catalog/sku/Thumb_S1.jpg");
-		sil1.add(si1);
+		//sil1.add(si1);
 		
-		siIds.add(pdpManager.createSkuImage(si1));
+		siIds.add(pdpManager.createImage(si1));
 		
 		
 		SkuPricePoint pp = new SkuPricePoint();
@@ -277,8 +277,8 @@ public class CatalogActorController extends BaseController {
 		sku1.setParentProductId("prd0001");
 		sku1.setSkuId("sku0001");	
 		sku1.setSkuImageIds(siIds);
-		sku1.setSkuImage(sil1);
-		sku1.setSkuPricePoint(pp);
+		//sku1.setSkuImage(sil1);
+		//sku1.setSkuPricePoint(pp);
 		sku1.setVkus(vkus);  
 		sku1.setSkuPricePointId(pricePointId);
 		
@@ -293,12 +293,14 @@ public class CatalogActorController extends BaseController {
 	 */
 	private void initProduct() {
 		
-		List<ProductImage> pi = new ArrayList<ProductImage>();
+		
 		ProductImage i1 = new ProductImage();
 		i1.setLargeImage("/docs/images/catalog/product/Large_P1.jpg");
 		i1.setMedIMage("/docs/images/catalog/product/Med_P1.jpg");
 		i1.setSmallImage("/docs/images/catalog/product/Small_P1.jpg");
 		i1.setThumbnailImage("/docs/images/catalog/product/ThuRmb_P1.jpg");
+		
+		
 		
 		List<String> recommendedProducts = new ArrayList<String>();
 		recommendedProducts.add("prd1001");
@@ -324,14 +326,13 @@ public class CatalogActorController extends BaseController {
 		prod1.setBrand("Sony");
 		prod1.setWhatsIncluded(whatsIncluded);
 		prod1.setParentCategoryId("cat005");
-		pi.add(i1);
-		prod1.setProductImage(pi);
+		prod1.setImageId(pdpManager.createImage(i1));
 		prod1.setRecommendedProducts(recommendedProducts);
 		prod1.setSkus(skus);
 		
 		
 		
-		List<ProductImage> pi2 = new ArrayList<ProductImage>();
+
 		ProductImage i12 = new ProductImage();
 		i12.setLargeImage("/docs/images/catalog/product/Large_P12.jpg");
 		i12.setMedIMage("/docs/images/catalog/product/Med_P12.jpg");
@@ -359,8 +360,7 @@ public class CatalogActorController extends BaseController {
 		prod2.setBrand("Luvlap");
 		prod2.setWhatsIncluded(whatsIncluded2);
 		prod2.setParentCategoryId("cat007");
-		pi2.add(i12);
-		prod2.setProductImage(pi2);
+		prod2.setImageId(pdpManager.createImage(i12));
 		prod2.setRecommendedProducts(recommendedProducts2);
 		prod2.setSkus(skus2);
 		
@@ -374,7 +374,7 @@ public class CatalogActorController extends BaseController {
 		prod3.setBrand("Sony");
 		prod3.setWhatsIncluded(whatsIncluded);
 		prod3.setParentCategoryId("chldCat001");
-		prod3.setProductImage(pi);
+		prod3.setImageId(pdpManager.createImage(i1));
 		prod3.setRecommendedProducts(recommendedProducts);
 		prod3.setSkus(skus);
 		
@@ -387,7 +387,7 @@ public class CatalogActorController extends BaseController {
 		prod4.setBrand("Sony");
 		prod4.setWhatsIncluded(whatsIncluded);
 		prod4.setParentCategoryId("chldCat001");
-		prod4.setProductImage(pi);
+		prod4.setImageId(pdpManager.createImage(i12));
 		prod4.setRecommendedProducts(recommendedProducts);
 		prod4.setSkus(skus);
 		

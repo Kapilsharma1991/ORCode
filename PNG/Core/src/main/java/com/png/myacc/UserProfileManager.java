@@ -51,6 +51,7 @@ public class UserProfileManager extends BaseManager {
 			UserProfile profile = translateToUserProfile(userReqVO);
 			profile.setAccountStatus(UserProfileConstants.ACCOUNT_ACTIVE);
 			profileTools.createUser(profile);
+			
 			profileResponseVO.setFirstName(profile.getFirstName());
 			
 		}
