@@ -21,7 +21,19 @@ public class Order {
 	private String id;
 	private List<Booking> bookings;
 	private OrderPriceInfo orderPriceInfo;
-	
+	private String shippingGroupId;
+	public String getShippingGroupId() {
+		return shippingGroupId;
+	}
+
+
+
+	public void setShippingGroupId(String shippingGroupId) {
+		this.shippingGroupId = shippingGroupId;
+	}
+
+
+
 	/**
 	 * @return the orderPriceInfo
 	 */

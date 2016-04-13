@@ -235,5 +235,27 @@
 	</bean>
 
 	<!-- *****************Mongo Components ends here***************** -->
+	
+	<!-- *****************checkout Components starts here***************** -->
+	
+	<bean id="checkoutActorController" class="com.png.checkout.CheckoutActorController">
+		<property name="shippingGroupManager" ref="shippingGroupManager"></property>
+		<property name="shippingGroupTranslator" ref="shippingGroupTranslator"></property>
+		<property name="shippingGroupValidator" ref="shippingGroupValidator"></property>
+		<property name="sessionManager" ref="sessionManager"></property>
+	</bean>
+	<bean id="shippingGroupTranslator" class="com.png.checkout.ShippingGroupTranslator">
+	</bean>
+	<bean id="shippingGroupValidator" class="com.png.checkout.ShippingGroupValidator">
+	<property name="addressValidator" ref="addressValidator"></property>
+	</bean>
 
+	<bean id="shippingGroupManager" class="com.png.checkout.ShippingGroupManager">
+		<property name="shippingTools" ref="shippingTools"></property>
+	</bean>
+	<bean id="shippingTools" class="com.png.checkout.ShippingTools">
+		<property name="coreMongoTemplate" ref="coreMongoTemplate">
+		</property>
+	</bean>
+	<!-- *****************checkout Components ends here***************** -->
 </beans>
