@@ -11,6 +11,7 @@ import com.png.myacc.constant.UserProfileConstants;
 import com.png.myacc.constant.UserProfileErrorMsgConstants;
 import com.png.myacc.vo.UserProfileReqVO;
 import com.png.myacc.vo.UserProfileRespVO;
+import com.png.security.PngSecurityManager;
 
 /**
  * @author Manish Arora
@@ -19,6 +20,21 @@ import com.png.myacc.vo.UserProfileRespVO;
 public class UserProfileManager extends BaseManager {
 	
 	private ProfileTools profileTools;
+	private PngSecurityManager securityManager;
+
+	/**
+	 * @return the securityManager
+	 */
+	public PngSecurityManager getSecurityManager() {
+		return securityManager;
+	}
+
+	/**
+	 * @param securityManager the securityManager to set
+	 */
+	public void setSecurityManager(PngSecurityManager securityManager) {
+		this.securityManager = securityManager;
+	}
 
 	/**
 	 * @return the profileTools

@@ -1,5 +1,6 @@
 package com.png.catalog.Entity;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -25,7 +26,20 @@ public class Sku {
 	private SkuPricePoint skuPricePoint;
 	private String skuPricePointId;
 	private List<String> vkus;
+	private HashMap<String, String> dynamicAttributes;
 	
+	/**
+	 * @return the dynamicAttributes
+	 */
+	public HashMap<String, String> getDynamicAttributes() {
+		return dynamicAttributes;
+	}
+	/**
+	 * @param dynamicAttributes the dynamicAttributes to set
+	 */
+	public void setDynamicAttributes(HashMap<String, String> dynamicAttributes) {
+		this.dynamicAttributes = dynamicAttributes;
+	}
 	public String getSkuId() {
 		return skuId;
 	}
