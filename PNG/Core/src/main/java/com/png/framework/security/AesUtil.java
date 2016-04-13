@@ -25,7 +25,7 @@ public class AesUtil {
     private int iterationCount;
     private Cipher cipher;
     
-    public void init (int keySize, int iterationCount) {
+    public void init () {
         this.keySize = 128;
         this.iterationCount = 100;
         try {
@@ -116,7 +116,7 @@ public class AesUtil {
     }
     
     
-    public AesUtil(int keySize, int iterationCount) {
+/*    public AesUtil(int keySize, int iterationCount) {
         this.keySize = keySize;
         this.iterationCount = iterationCount;
         try {
@@ -125,7 +125,7 @@ public class AesUtil {
         catch (Exception e) {
             throw fail(e);
         }
-    }
+    }*/
 }
 
 

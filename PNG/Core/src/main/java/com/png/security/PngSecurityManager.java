@@ -90,8 +90,7 @@ public class PngSecurityManager {
 	 */
 	private String getPassPhrase() {
 		
-		getConfigManager().getProperty(BaseConstants.PNG_PASSPHRASE);
-		return null;
+		return getConfigManager().getProperty(BaseConstants.PNG_PASSPHRASE);
 	}
 
 	/**
@@ -99,8 +98,8 @@ public class PngSecurityManager {
 	 */
 	private String getIV() {
 		
-		getConfigManager().getProperty(BaseConstants.PNG_IV);
-		return null;
+		return getConfigManager().getProperty(BaseConstants.PNG_IV);
+
 	}
 	
 	private String getSalt(String staticSalt) {

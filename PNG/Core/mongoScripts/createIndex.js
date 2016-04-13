@@ -10,3 +10,6 @@ db.catalog.createIndex({"catalogId":1}, {unique:true});
 db.commonConfig.createIndex({"propName":1}, {unique:true});
 db.shippingMethod.createIndex({"shippingMethodId":1}, {unique:true});
 
+
+
+

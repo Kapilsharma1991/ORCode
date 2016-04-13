@@ -17,20 +17,22 @@ import com.png.security.PngSecurityManager;
  */
 public class AddressValidator {
 	
-	private PngSecurityManager securityManger;
+	private PngSecurityManager securityManager;
+
+	
 
 	/**
-	 * @return the securityManger
+	 * @return the securityManager
 	 */
-	public PngSecurityManager getSecurityManger() {
-		return securityManger;
+	public PngSecurityManager getSecurityManager() {
+		return securityManager;
 	}
 
 	/**
-	 * @param securityManger the securityManger to set
+	 * @param securityManager the securityManager to set
 	 */
-	public void setSecurityManger(PngSecurityManager securityManger) {
-		this.securityManger = securityManger;
+	public void setSecurityManager(PngSecurityManager securityManager) {
+		this.securityManager = securityManager;
 	}
 
 	/**
@@ -62,9 +64,7 @@ public class AddressValidator {
 			emap.setErrorCode(BaseConstants.ERROR_CODE_TWENTY_TWO);
 			return false;
 		} else {
-			String clear = getSecurityManger().decrypt(password);
-			System.out.println(clear);
-			
+						
 		}
 			
 

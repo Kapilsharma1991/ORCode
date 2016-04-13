@@ -17,16 +17,16 @@ public class TestEncryption {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		AesUtil util = new AesUtil(128128, 100);
-		String encrypt = util.encrypt(getSalt("3288733501983511759"), "F27D5C9927726BCEFE7510B1BDD3D137", "aesalgoisbestbes",
+	/*	// TODO Auto-generated method stub
+		AesUtil util = new AesUtil(128, 100);
+		String encrypt = util.encrypt(getSalt("965973469156146016"), "F27D5C9927726BCEFE7510B1BDD3D137", "aesalgoisbestbes",
 				"pwd1234");
 		System.out.println("encrypt:::"+encrypt);
 		
-		String decrypt = util.decrypt(getSalt("3288733501983511759"), "F27D5C9927726BCEFE7510B1BDD3D137", "aesalgoisbestbes",
+		String decrypt = util.decrypt(getSalt("965973469156146016"), "F27D5C9927726BCEFE7510B1BDD3D137", "aesalgoisbestbes",
 				encrypt);
 		
-		System.out.println("decrypt:::"+decrypt);
+		System.out.println("decrypt:::"+decrypt);*/
 	}
 
 	

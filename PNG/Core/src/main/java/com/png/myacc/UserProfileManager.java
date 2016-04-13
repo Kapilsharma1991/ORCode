@@ -86,7 +86,8 @@ public class UserProfileManager extends BaseManager {
 		profile.setEmailId(userReqVO.getEmailId());
 		profile.setFirstName(userReqVO.getFirstName());
 		profile.setLastName(userReqVO.getLastName());
-		profile.setPassword(userReqVO.getPassword());
+		String encyptedPassword = getSecurityManager().encrypt(userReqVO.getPassword());
+		profile.setPassword(encyptedPassword);
 		profile.setPhoneNum(userReqVO.getPhoneNumber());
 		return profile;
 	}

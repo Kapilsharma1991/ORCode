@@ -177,6 +177,7 @@
 
 	<bean id="userProfileManager" class="com.png.myacc.UserProfileManager">
 		<property name="profileTools" ref="profileTools"></property>
+		<property name="securityManager" ref="securityManager"></property>
 	</bean>
 
 	<bean id="userProfileTranslator" class="com.png.myacc.UserProfileTranslator"></bean>
@@ -202,14 +203,32 @@
 	<!-- *****************Common Components start here***************** -->
 
 	<bean id="addressValidator" class="com.png.common.validator.AddressValidator">
+	<property name="securityManager" ref="securityManager"></property>
 	</bean>
-
-
+	<bean id="configManager" class="com.png.config.PngConfigManager">
+	<property name="configTools" ref="configTools"></property>
+	</bean>
+	
+	<bean id="configTools" class="com.png.config.ConfigTools">
+	<property name="coreMongoTemplate" ref="coreMongoTemplate"></property>
+	</bean>
+	
 
 	<!-- *****************Common Components ends here***************** -->
 
 
+<!-- *****************Security Components start here***************** -->
 
+	
+	<bean id="securityManager" class="com.png.security.PngSecurityManager">
+	<property name="aesUtil" ref="aesUtil"></property>
+	<property name="configManager" ref="configManager"></property>
+	</bean>
+	
+	<bean id="aesUtil" class="com.png.framework.security.AesUtil" init-method="init"></bean>
+
+
+	<!-- *****************Security Components ends here***************** -->
 
 
 
