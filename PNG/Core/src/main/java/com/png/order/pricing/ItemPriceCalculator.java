@@ -66,6 +66,7 @@ public class ItemPriceCalculator implements PriceCalculator {
 				monthlyPrice, quaterlyPrice);
 		ItemPriceInfo priceInfo = new ItemPriceInfo();
 		priceInfo.setOriginalPrice(itemPrice);
+		priceInfo.setFinalPrice(itemPrice);
 		priceInfo.setDeposit(pricePoint.getDeposit());
 		return priceInfo;
 

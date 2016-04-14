@@ -5,6 +5,7 @@ package com.png.order.pricing;
 
 import java.util.List;
 
+import com.png.order.Entity.Order;
 import com.png.order.commerce.ItemPriceInfo;
 import com.png.reservation.Entity.Booking;
 
@@ -16,6 +17,8 @@ public class PricingEngine {
 	
 	private ItemPriceCalculator itemPriceCalculator;
 	private OrderPriceCalculator orderPriceCalculator;
+
+
 	/**
 	 * @return the itemPriceCalculator
 	 */
@@ -51,20 +54,30 @@ public class PricingEngine {
 	}
 	/**
 	 * @param bookings
-	 * @param priceInfo 
+	 * @return 
 	 */
-	public void repriceOrder(List<Booking> bookings, OrderPriceInfo priceInfo) {
+	public OrderPriceInfo repriceOrder(List<Booking> bookings) {
 		
-		double originalPrice = priceInfo.getOriginalPrice();
-		double deposit = priceInfo.getDeposit();
-		for (Booking booking : bookings) {
-			
-			originalPrice += booking.getItemPriceInfo().getOriginalPrice();
-			deposit += booking.getItemPriceInfo().getDeposit();
-		}
+		return orderPriceCalculator.repriceOrder(bookings);
 		
-		priceInfo.setDeposit(deposit);
-		priceInfo.setOriginalPrice(originalPrice);
+	}
+	
+	/**
+	 * @param shippingGroupId
+	 * @param priceInfo
+	 */
+	public void repriceOrder(String shippingGroupId, OrderPriceInfo priceInfo) {
+		
+		orderPriceCalculator.repriceOrder(shippingGroupId, priceInfo);
+		
+	}
+	/**
+	 * @param order
+	 */
+	public void repriceOrder(Order order) {
+		
+		orderPriceCalculator.repriceOrder(order);
+		
 	}
 	
 	

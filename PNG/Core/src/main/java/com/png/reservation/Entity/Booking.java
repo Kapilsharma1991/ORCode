@@ -1,9 +1,10 @@
 package com.png.reservation.Entity;
 
-import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import org.joda.time.DateTime;
 import org.springframework.data.annotation.Id;
 
 import com.png.base.BaseConstants;
@@ -23,6 +24,20 @@ public class Booking implements Comparable<Booking> {
 	private String vkuId;
 	private int status;
 	private String skuId;
+	private DateTime createdDate;
+	
+	/**
+	 * @return the createdDate
+	 */
+	public DateTime getCreatedDate() {
+		return createdDate;
+	}
+	/**
+	 * @param createdDate the createdDate to set
+	 */
+	public void setCreatedDate(DateTime createdDate) {
+		this.createdDate = createdDate;
+	}
 	/**
 	 * @return the skuId
 	 */

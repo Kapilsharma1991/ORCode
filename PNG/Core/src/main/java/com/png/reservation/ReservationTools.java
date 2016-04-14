@@ -40,10 +40,10 @@ public class ReservationTools {
 	 * @param booking
 	 * @return
 	 */
-	public Booking createBooking(Booking booking) {
+	public String createBooking(Booking booking) {
 
 		getCoreMongoTemplate().save(booking);
-		return booking;
+		return booking.getId();
 	}
 
 	/**
@@ -63,6 +63,15 @@ public class ReservationTools {
 			return getCoreMongoTemplate().find(query, Booking.class).get(0);
 		} else return null;
 		
+	}
+
+	/**
+	 * @param bookingId
+	 * @return
+	 */
+	public Booking getBooking(String bookingId) {
+		
+		return coreMongoTemplate.findById(bookingId, Booking.class);		
 	}
 
 }

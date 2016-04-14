@@ -12,6 +12,8 @@ public class BasePriceInfo {
 	private double deposit;
 	private double originalPrice;
 	private double finalPrice;
+	private double savings;
+	
 	/**
 	 * @return the deposit
 	 */
@@ -47,6 +49,18 @@ public class BasePriceInfo {
 	 */
 	public void setFinalPrice(double finalPrice) {
 		this.finalPrice = finalPrice;
+	}
+	/**
+	 * @return the savings
+	 */
+	public double getSavings() {
+		return savings;
+	}
+	/**
+	 * @param savings the savings to set
+	 */
+	public void setSavings(double savings) {
+		this.savings = savings;
 	}
 
 	

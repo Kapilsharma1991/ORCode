@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import com.png.checkout.Entity.ShippingGroup;
 import com.png.checkout.Entity.ShippingMethod;
 import com.png.common.Entity.ContactInfo;
-import com.png.order.Entity.Order;
 
 public class ShippingTools {
 	
@@ -68,18 +67,22 @@ public class ShippingTools {
 	}
 	
 	public ShippingMethod getShippingMethodById(String id) {
-		ShippingMethod sm = null;
-		Query query = new Query(Criteria.where("shippingMethodId").is(id));	
-		List<ShippingMethod> listShippingMethods = coreMongoTemplate.find(query, ShippingMethod.class);
-		if(listShippingMethods.size() != 0 && listShippingMethods != null){
-			sm =  listShippingMethods.get(0);
-		}
-		return sm;
+		return coreMongoTemplate.findById(id, ShippingMethod.class);
 	}
 	public String  createShippingGroup(ShippingGroup shippingGrp) {
 		
 		 coreMongoTemplate.save(shippingGrp);
 		 return shippingGrp.getId();
+	}
+
+
+
+	/**
+	 * @param shippingGroupId
+	 */
+	public ShippingGroup getShippingGroupById(String shippingGroupId) {
+		return coreMongoTemplate.findById(shippingGroupId, ShippingGroup.class);
+		
 	}
 	
 }

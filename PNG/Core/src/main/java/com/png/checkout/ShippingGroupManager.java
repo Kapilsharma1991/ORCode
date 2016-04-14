@@ -3,31 +3,14 @@
  */
 package com.png.checkout;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.png.base.BaseManager;
-import com.png.base.ErrorMap;
-import com.png.cart.constant.CartErrorMessageConstants;
-import com.png.cart.vo.CartDetailsReqVO;
-import com.png.cart.vo.CartDetailsRespVO;
-import com.png.cart.vo.CartModifierReqVO;
-import com.png.cart.vo.CartModifierRespVO;
-import com.png.cart.vo.SkuSummaryVO;
-import com.png.catalog.CatalogTools;
-import com.png.catalog.Entity.Sku;
-import com.png.catalog.Entity.SkuImage;
 import com.png.checkout.Entity.ShippingGroup;
 import com.png.checkout.Entity.ShippingMethod;
 import com.png.checkout.vo.ShippingGroupReqVO;
 import com.png.common.Entity.ContactInfo;
-import com.png.order.OrderManager;
-import com.png.order.Entity.Order;
-import com.png.reservation.ReservationEngine;
-import com.png.reservation.Entity.Booking;
 
 /**
- * @author Manish Arora
+ * @author Ricky Sahota
  *
  */
 public class ShippingGroupManager extends BaseManager {

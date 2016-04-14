@@ -3,6 +3,9 @@
  */
 package com.png.session;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+
 import com.png.order.Entity.Order;
 
 /**
@@ -29,7 +32,7 @@ public class SessionManager {
 
 	 public void init(){
 	      
-		 setOrder(new Order()); 
+		setOrder(new Order(new DateTime(DateTimeZone.forID("Asia/Kolkata")))); 
 		 
 	   }
 	

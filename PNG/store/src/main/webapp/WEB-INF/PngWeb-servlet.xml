@@ -105,7 +105,6 @@
 		<property name="orderTools" ref="orderTools"></property>
 		<property name="sessionManager" ref="sessionManager"></property>
 		<property name="pricingEngine" ref="pricingEngine"></property>
-
 	</bean>
 
 	<bean id="orderTools" class="com.png.order.OrderTools">
@@ -127,7 +126,10 @@
 		<property name="catalogTools" ref="catalogTools"></property>
 	</bean>
 
-	<bean id="orderPriceCalculator" class="com.png.order.pricing.OrderPriceCalculator"></bean>
+	<bean id="orderPriceCalculator" class="com.png.order.pricing.OrderPriceCalculator">
+		<property name="shippingTools" ref="shippingTools"></property>
+		<property name="reservationTools" ref="reservationTools"></property>
+	</bean>
 
 	<!-- *****************Pricing Modifier Components ends here***************** -->
 
@@ -203,29 +205,30 @@
 	<!-- *****************Common Components start here***************** -->
 
 	<bean id="addressValidator" class="com.png.common.validator.AddressValidator">
-	<property name="securityManager" ref="securityManager"></property>
+		<property name="securityManager" ref="securityManager"></property>
 	</bean>
 	<bean id="configManager" class="com.png.config.PngConfigManager">
-	<property name="configTools" ref="configTools"></property>
+		<property name="configTools" ref="configTools"></property>
 	</bean>
-	
+
 	<bean id="configTools" class="com.png.config.ConfigTools">
-	<property name="coreMongoTemplate" ref="coreMongoTemplate"></property>
+		<property name="coreMongoTemplate" ref="coreMongoTemplate"></property>
 	</bean>
-	
+
 
 	<!-- *****************Common Components ends here***************** -->
 
 
-<!-- *****************Security Components start here***************** -->
+	<!-- *****************Security Components start here***************** -->
 
-	
+
 	<bean id="securityManager" class="com.png.security.PngSecurityManager">
-	<property name="aesUtil" ref="aesUtil"></property>
-	<property name="configManager" ref="configManager"></property>
+		<property name="aesUtil" ref="aesUtil"></property>
+		<property name="configManager" ref="configManager"></property>
 	</bean>
-	
-	<bean id="aesUtil" class="com.png.framework.security.AesUtil" init-method="init"></bean>
+
+	<bean id="aesUtil" class="com.png.framework.security.AesUtil"
+		init-method="init"></bean>
 
 
 	<!-- *****************Security Components ends here***************** -->
@@ -235,6 +238,7 @@
 	<!-- *****************Mongo Components Starts here***************** -->
 
 	<mongo:mongo host="localhost" port="27017" />
+
 
 	<bean id="catMongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg ref="mongo" />
@@ -254,9 +258,9 @@
 	</bean>
 
 	<!-- *****************Mongo Components ends here***************** -->
-	
+
 	<!-- *****************checkout Components starts here***************** -->
-	
+
 	<bean id="checkoutActorController" class="com.png.checkout.CheckoutActorController">
 		<property name="shippingGroupManager" ref="shippingGroupManager"></property>
 		<property name="shippingGroupTranslator" ref="shippingGroupTranslator"></property>
@@ -266,7 +270,7 @@
 	<bean id="shippingGroupTranslator" class="com.png.checkout.ShippingGroupTranslator">
 	</bean>
 	<bean id="shippingGroupValidator" class="com.png.checkout.ShippingGroupValidator">
-	<property name="addressValidator" ref="addressValidator"></property>
+		<property name="addressValidator" ref="addressValidator"></property>
 	</bean>
 
 	<bean id="shippingGroupManager" class="com.png.checkout.ShippingGroupManager">

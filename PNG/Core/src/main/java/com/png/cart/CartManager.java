@@ -20,6 +20,7 @@ import com.png.catalog.Entity.SkuImage;
 import com.png.order.OrderManager;
 import com.png.order.Entity.Order;
 import com.png.reservation.ReservationEngine;
+import com.png.reservation.ReservationTools;
 import com.png.reservation.Entity.Booking;
 
 /**
@@ -79,25 +80,13 @@ public class CartManager extends BaseManager {
 		this.orderManager = orderManager;
 	}
 
-	/**
-	 * @param productId
-	 * @param skuId
-	 * @param vkuId
-	 * @return
-	 */
-	public CartModifierRespVO addItemToCart(String productId, String skuId,
-			String vkuId) {
 
-		CartModifierRespVO resp = new CartModifierRespVO();
-		//resp.setTest("test add to cart wiring - method implementation is pending");
-		return resp;
-	}
 
 	/**
 	 * @param addToCartReqVO
 	 * @param emap 
 	 * @return
-	 */
+	 */ 
 	public CartModifierRespVO addItemToCart(CartModifierReqVO addToCartReqVO, ErrorMap emap) {
 
 				CartModifierRespVO resp = new CartModifierRespVO();
@@ -110,20 +99,21 @@ public class CartManager extends BaseManager {
 				&& availableVkus.size() == addToCartReqVO.getQty()) {
 			
 			Order order = orderManager.getOrder();
-			List<Booking> bookings = order.getBookings();
+			List<String> bookingIds = order.getBookings();
 			
 			for (String availableVku : availableVkus) {
-				Booking booking = reservationEngine.createBooking(availableVku, addToCartReqVO.getSkuId(),
+				String bookingId = reservationEngine.createBooking(availableVku, addToCartReqVO.getSkuId(),
 						addToCartReqVO.getBookingStartDate(),
 						addToCartReqVO.getBookingEndDate());
 
 				catalogTools.updateVkuWithBookingId(availableVku,
-						booking.getId());
-				bookings.add(booking);
+						bookingId);
+				bookingIds.add(bookingId);
+				
 			}
 		
-			order.setBookings(bookings);
-			order.setOrderPriceInfo(orderManager.repriceOrder(bookings));	
+			order.setBookings(bookingIds);
+			orderManager.repriceOrder(order);	
 			resp.setOrderId(orderManager.updateOrder(order));
 			
 
@@ -163,9 +153,14 @@ public class CartManager extends BaseManager {
 		}
 		
 		List<SkuSummaryVO> skuSummaryList = new ArrayList<SkuSummaryVO>();
+		List<Booking> bookings = new ArrayList<Booking>();
 		
-		for (Booking booking : order.getBookings())
+		for (String bookingId : order.getBookings())
 		{
+			
+			ReservationTools tools = getReservationEngine().getReservationTools();
+			Booking booking = tools.getBooking(bookingId);
+			bookings.add(booking);
 			SkuSummaryVO summ = new SkuSummaryVO();
 			summ.setSkuId(booking.getSkuId());
 			Sku sku = getCatalogTools().getSku(booking.getSkuId());
@@ -182,7 +177,7 @@ public class CartManager extends BaseManager {
 			
 		}
 		
-		resp.setBookings(order.getBookings());
+		resp.setBookings(bookings);
 		resp.setSkuSummaryList(skuSummaryList);
 		resp.setOrderPriceInfo(order.getOrderPriceInfo());
 		

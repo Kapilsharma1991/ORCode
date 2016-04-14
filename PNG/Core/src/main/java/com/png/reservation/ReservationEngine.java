@@ -10,6 +10,9 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+
 import com.png.base.BaseConstants;
 import com.png.catalog.CatalogTools;
 import com.png.catalog.Entity.Sku;
@@ -179,7 +182,7 @@ public class ReservationEngine {
 	 * @param string 
 	 * @return
 	 */
-	public Booking createBooking(String vkuId, String skuId, String bookingStartDate,
+	public String createBooking(String vkuId, String skuId, String bookingStartDate,
 			String bookingEndDate) {
 
 		Booking booking = new Booking(ReservationConstants.BOOKING_STATUS_OPEN);
@@ -188,6 +191,8 @@ public class ReservationEngine {
 		booking.setStartDate(bookingStartDate);
 		booking.setEndDate(bookingEndDate);
 		booking.setItemPriceInfo(getPricingEngine().repriceBooking(bookingStartDate,bookingEndDate , skuId));
+		DateTime date = new DateTime(DateTimeZone.forID("Asia/Kolkata"));
+		booking.setCreatedDate(date);
 		return getReservationTools().createBooking(booking);
 	}
 
