@@ -7,8 +7,10 @@ import java.util.Date;
 import org.joda.time.DateTime;
 import org.springframework.data.annotation.Id;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.png.base.BaseConstants;
 import com.png.order.commerce.ItemPriceInfo;
+import com.png.serializer.JsonDateSerializer;
 
 /**
  * @author Manish Arora
@@ -29,6 +31,7 @@ public class Booking implements Comparable<Booking> {
 	/**
 	 * @return the createdDate
 	 */
+	@JsonSerialize(using=JsonDateSerializer.class)
 	public DateTime getCreatedDate() {
 		return createdDate;
 	}
