@@ -19,6 +19,7 @@ import com.png.checkout.constant.CheckoutConstants;
 import com.png.checkout.vo.ShippingGroupReqVO;
 import com.png.checkout.vo.ShippingGroupResVO;
 import com.png.common.Entity.ContactInfo;
+import com.png.order.OrderManager;
 import com.png.session.SessionManager;
 
 /**
@@ -36,7 +37,16 @@ public class CheckoutActorController extends BaseController {
 	private ShippingGroupValidator shippingGroupValidator;
 	private ShippingGroupManager shippingGroupManager;
 	private SessionManager sessionManager;
+	private OrderManager orderManager;
 	
+	public OrderManager getOrderManager() {
+		return orderManager;
+	}
+
+	public void setOrderManager(OrderManager orderManager) {
+		this.orderManager = orderManager;
+	}
+
 	public SessionManager getSessionManager() {
 		return sessionManager;
 	}
@@ -111,7 +121,7 @@ public class CheckoutActorController extends BaseController {
 				shippGrp.setShippingMethodId(shippingMethod.getId());
 				
 				shippingGrpId = (String)shippingGroupManager.createShippingGroup(shippGrp);
-				getSessionManager().getOrder().setShippingGroupId(shippingGrpId);
+				orderManager.getOrder().setShippingGroupId(shippingGrpId);
 			}
 			
 			
