@@ -36,7 +36,7 @@ public class CheckoutActorController extends BaseController {
 	private ShippingGroupTranslator shippingGroupTranslator;
 	private ShippingGroupValidator shippingGroupValidator;
 	private ShippingGroupManager shippingGroupManager;
-	private SessionManager sessionManager;
+
 	private OrderManager orderManager;
 	
 	public OrderManager getOrderManager() {
@@ -47,14 +47,7 @@ public class CheckoutActorController extends BaseController {
 		this.orderManager = orderManager;
 	}
 
-	public SessionManager getSessionManager() {
-		return sessionManager;
-	}
-
-	public void setSessionManager(SessionManager sessionManager) {
-		this.sessionManager = sessionManager;
-	}
-
+	
 	public ShippingGroupTranslator getShippingGroupTranslator() {
 		return shippingGroupTranslator;
 	}
